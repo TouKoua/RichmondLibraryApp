@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Richmond_Library_App',
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [

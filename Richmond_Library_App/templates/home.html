@@ -1,9 +1,22 @@
 {% load static %}
 <html>
   <head>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
     <link href="{% static 'home.css' %}" rel="stylesheet" type="text/css">
   </head>
   <body>
+    <div class="container">
+      <ul class="nav bg-info">
+        <li class="nav-item">
+          <a class="nav-link link-light" href="/">HOME</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-light" href="/members">MEMBERS</a>
+        </li>
+      </ul>
+    </div>
     <h1>Hello World!</h1>
   </body>
 </html>
