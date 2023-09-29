@@ -18,7 +18,7 @@ From there, choose your python version and VSCode should begin the process to cr
 # Install Django
 After installing Python, make sure you have Django installed. This project is using Django 4.2.5
 Run this command to install Django:
-python pip install Django==4.2.5
+pip install Django==4.2.5
 
 Run this command to check your Django version:
 python -m django --version
