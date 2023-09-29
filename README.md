@@ -12,7 +12,7 @@ https://www.python.org/downloads/
 
 # Using VSCode
 If you're using VSCode, make sure you setup your virtual enviroment before moving on. Otherwise the following python commands will not work.
-Head to the command prompt and search for Python: Create Environment and then click on Venv.
+Head to the command palette and search for Python: Create Environment and then click on Venv.
 From there, choose your python version and VSCode should begin the process to create a new virtual environment.
 
 # Install Django
@@ -27,8 +27,3 @@ python -m django --version
 The next thing we need to do is install bootstrap. This project uses Bootstrap 5
 Run this command to install Bootstrap:
 pip install django-bootstrap-v5
-
-# MySQL Database Installation
-The project also now uses MySQL as it's primary database. Pending some testing on our end, run the install script below for now and once we get
-more information, we can add more detail to this section
-pip install mysqlclient
