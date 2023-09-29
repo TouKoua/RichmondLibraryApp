@@ -24,6 +24,11 @@ Run this command to check your Django version:
 python -m django --version
 
 # Install Bootstrap
-The last thing we need to do is install bootstrap. This project uses Bootstrap 5
+The next thing we need to do is install bootstrap. This project uses Bootstrap 5
 Run this command to install Bootstrap:
 pip install django-bootstrap-v5
+
+# MySQL Database Installation
+The project also now uses MySQL as it's primary database. Pending some testing on our end, run the install script below for now and once we get
+more information, we can add more detail to this section
+pip install mysqlclient

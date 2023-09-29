@@ -8,6 +8,10 @@ class User(models.Model):
     name = models.CharField(max_length=40)
     email = models.EmailField(max_length=254)
     user_type = models.CharField(max_length=10) # added user type
+    
+    def __str__(self):
+        return self.name
+    
 
 class Book(models.Model):
     title = models.CharField(max_length=100)
@@ -18,4 +22,5 @@ class Book(models.Model):
     copies = models.IntegerField()
     available = models.IntegerField()
     # added available
-
+    def __str__(self):
+        return self.title
