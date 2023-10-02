@@ -1,0 +1,40 @@
+{% load static %}
+<html>
+
+<head>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link href="{% static 'home.css' %}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="nav bg-info">
+            <li class="nav-item">
+                <a class="nav-link link-light" href="">HOME</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link link-light" href="">MEMBERS</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container mt-5">
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+</body>
+
+</html>

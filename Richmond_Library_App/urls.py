@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Richmond_Library_App.views.home import Home
+from Richmond_Library_App.views.login import Login
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Home.as_view(), name = "Dashboard"),
+    path('', Login.as_view(), name = "Login"),
+    path('home/', Home.as_view(), name="Dashboard")
 ]
