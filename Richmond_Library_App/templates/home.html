@@ -1,22 +1,91 @@
 {% load static %}
 <html>
-  <head>
+<head>
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     <link href="{% static 'home.css' %}" rel="stylesheet" type="text/css">
-  </head>
-  <body>
+    <style>
+        /* custom  */
+        .book-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .book-card {
+            position: relative;
+            width: 200px;
+            height: 300px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+            .book-card:hover {
+                transform: scale(1.1);
+            }
+
+        .book-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .book-info {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .book-card:hover .book-info {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
     <div class="container">
-      <ul class="nav bg-info">
-        <li class="nav-item">
-          <a class="nav-link link-light" href="">HOME</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link link-light" href="">MEMBERS</a>
-        </li>
-      </ul>
+        <ul class="nav bg-info">
+            <li class="nav-item">
+                <a class="nav-link link-light" href="">HOME</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link link-light" href="">MEMBERS</a>
+            </li>
+        </ul>
     </div>
-    <h1>Hello World!</h1>
-  </body>
+
+    <!-- Display books -->
+    <div class="container">
+        <h1>Book Dashboard</h1>
+        <div class="book-container">
+            {% for book in books %}
+            <div class="book-card">
+                <img class="book-image" src="{{ book.image.url }}" alt="{{ book.title }} Cover">
+                <div class="book-info">
+                    <h3>{{ book.title }}</h3>
+                    <p>Author: {{ book.author }}</p>
+                    <p>ISBN: {{ book.isbn }}</p>
+                    <p>Year: {{ book.year }}</p>
+                    <p>Publisher: {{ book.publisher }}</p>
+                    <p>Copies: {{ book.copies }}</p>
+                    <p>Available: {{ book.available }}</p>
+                    <!-- end of book desciptions but can add more later on if needed -->
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
 </html>
