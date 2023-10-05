@@ -1,22 +1,26 @@
-#import django.db.models
-from django.db import models
+import django.db.models as models
+
+
+# Create your models here.
+class User(models.Model):
+    username = models.CharField(max_length=20)
+    password = models.CharField(max_length=20)
+    name = models.CharField(max_length=40)
+    email = models.EmailField(max_length=254)
+    user_type = models.CharField(max_length=10) # added user type
+    
+    def __str__(self):
+        return self.name
+    
 
 class Book(models.Model):
-    #ISBN
-    ISBN = models.CharField(max_length=12)
-    #Title
-    Title = models.CharField(max_length=100)
-    #Author
-    Author = models.CharField(max_length=50)
-    #Publisher
-    Publisher = models.CharField(max_length=50)
-    #Publication_Date
-    Publication_Date = models.CharField(max_length=10)
-    #Entry_Date
-    Entry_Date = models.CharField(max_length=10)
-    #Reading_Level
-    Reading_Level = models.CharField(max_length=20)
-    #Genre
-    Genre = models.CharField(max_length=20)
-    #Quantity
-    Quantity = models.CharField(max_length=4)
+    title = models.CharField(max_length=100)
+    author = models.CharField(max_length=100)
+    isbn = models.CharField(max_length=20)
+    year = models.CharField(max_length=4)
+    publisher = models.CharField(max_length=100)
+    copies = models.IntegerField()
+    available = models.IntegerField()
+    # added available
+    def __str__(self):
+        return self.title
