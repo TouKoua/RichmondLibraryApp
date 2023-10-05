@@ -18,9 +18,11 @@ from django.contrib import admin
 from django.urls import path
 from Richmond_Library_App.views.home import Home
 from Richmond_Library_App.views.login import Login
+from Richmond_Library_App.views.book import Book
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Login.as_view(), name = "Login"),
-    path('home/', Home.as_view(), name="Dashboard")
+    path('home/', Home.as_view(), name="Dashboard"),
+    path('book/', Book.as_view(), name="Book")
 ]

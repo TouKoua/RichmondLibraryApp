@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+
+        <meta charset="UTF-8" />
+        <title>Book Test-Page</title>
+        <link href="{% static 'book.css' %}" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="container">
+            <ul class="nav bg-info">
+                <li class="nav-item">
+                    <a class="nav-link link-light" href="">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-light" href="">MEMBERS</a>
+                </li>
+            </ul>
+        </div>
+        <h1 class="center">-INSERT BOOK NAME HERE-</h1>
+    </body>
+</html>
