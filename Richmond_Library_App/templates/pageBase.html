@@ -1,0 +1,42 @@
+{% load static %}
+<html>
+<head>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% block stylesheet %}
+        <code>define stylesheet block in code to import as static stylesheet</code>
+    {% endblock %}
+</head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="{% static 'images/mps_logo1.png' %}" alt=" Logo">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link link-light" href="#">HOME</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link-light" href="#">MEMBERS</a>
+            </li>
+            <!-- Add more navigation links here -->
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% block app_block %}
+        <h1>This should not render on the page</h1>
+        <p> Define the app_block in templates to see content. If you need an example, take a look at home.html
+            <code>
+                app_block
+            </code>
+            Other questions can be directed towards TouKoua.
+        </p>
+    {% endblock %}
+  </body>
+</html>
