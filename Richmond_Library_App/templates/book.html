@@ -15,13 +15,16 @@
         <div class="container">
             <ul class="nav bg-info">
                 <li class="nav-item">
-                    <a class="nav-link link-light" href="">HOME</a>
+                    <a class="nav-link link-light" href="{% url 'Dashboard'%}">HOME</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link link-light" href="">MEMBERS</a>
                 </li>
             </ul>
         </div>
+        <a href="{% url 'Dashboard' %}">
+            <button>Back</button>
+        </a>
         <h1 class="center">-INSERT BOOK NAME HERE-</h1>
     </body>
 </html>
