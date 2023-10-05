@@ -1,43 +1,29 @@
+{% extends "pageBase.html" %}
 {% load static %}
-<html>
-<head>
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-    <link href="{% static 'home.css' %}" rel="stylesheet" type="text/css">
-</head>
-<body>
-    <div class="container">
-        <ul class="nav bg-info">
-            <li class="nav-item">
-                <a class="nav-link link-light" href="">HOME</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link link-light" href="">MEMBERS</a>
-            </li>
-        </ul>
-    </div>
+{% block stylesheet %}
+  <link href="{% static 'home.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
 
-    <!-- Display books -->
+{% block app_block %}
+  <div class="container">
+  <!-- Display books -->
     <div class="container">
-        <h1>Book Dashboard</h1>
-        <div class="book-container">
-            {% for book in books %}
-            <div class="book-card">
-                <a href="{% url 'Book' %}">
-                    <img class="book-image" src="{{ book.image.url }}" alt="{{ book.title }} Cover">
-                    <div class="book-info">
-                        <h3>{{ book.title }}</h3>
-                        <p>Author: {{ book.author }}</p>
-                        <p>Publisher: {{ book.publisher }}</p>
-                        <p>Copies: {{ book.copies }}</p>
-                        <p>Available: {{ book.available }}</p>
-                        <!-- end of book desciptions but can add more later on if needed -->
-                    </div>
-                </a>
-            </div>
-            {% endfor %}
+      <h1>Book Dashboard</h1>
+      <div class="book-container">
+        {% for book in books %}
+        <div class="book-card">
+          <img class="book-image" src="{{ book.image.url }}" alt="{{ book.title }} Cover">
+          <div class="book-info">
+            <h3>{{ book.title }}</h3>
+            <p>Author: {{ book.author }}</p>
+            <p>Publisher: {{ book.publisher }}</p>
+            <p>Copies: {{ book.copies }}</p>
+            <p>Available: {{ book.available }}</p>
+            <!-- end of book desciptions but can add more later on if needed -->
+          </div>
         </div>
+        {% endfor %}
+      </div>
     </div>
-</body>
-</html>
+  </div>
+{% endblock %}
