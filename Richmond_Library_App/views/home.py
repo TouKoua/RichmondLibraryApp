@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from .models import Book  # Import the Book model
+from Richmond_Library_App.models import User, Book  # Import the Book model
 
 class Home(View):
     def get(self, request):
