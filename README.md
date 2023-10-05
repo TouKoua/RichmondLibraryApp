@@ -27,3 +27,12 @@ python -m django --version
 The next thing we need to do is install bootstrap. This project uses Bootstrap 5
 Run this command to install Bootstrap:
 pip install django-bootstrap-v5
+
+<!-- 
+# Install Django Elasticsearch DSL
+The next thing we need to do is install Elasticsearch. This project uses Elasticsearcg DSL
+First, Run this command to install Bootstrap:
+pip install django-elasticsearch-dsl
+Second, add 'django_elasticsearch_dsl' to the INSTALLED_APPS in settings.py
+Third, define ELASTICSEARCH_DSL in settings.py.
+ -->

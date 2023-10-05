@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Richmond_Library_App',
     'bootstrap5',
+    'django_elasticsearch_dsl',
 ]
 
 MIDDLEWARE = [
@@ -79,6 +80,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': 'localhost',
+        'http_auth': ('username', 'password'),
     }
 }
 
