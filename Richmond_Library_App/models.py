@@ -2,7 +2,15 @@ import django.db.models as models
 
 
 # Create your models here.
+
 class User(models.Model):
+    """
+        Model to represent Users of the library application
+        containing the username, password, name, email, and
+        usertype.
+    """
+    # could probably remove username as a field and have email be
+    # a unique identifier instead.
     username = models.CharField(max_length=20)
     password = models.CharField(max_length=20)
     name = models.CharField(max_length=40)
@@ -13,7 +21,13 @@ class User(models.Model):
         return self.name
     
 
+
 class Book(models.Model):
+    """
+        Model to represent Books of the library application
+        containing the title, author, isbn, year, publisher,
+        number of copies, and number available.
+    """
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
     isbn = models.CharField(max_length=20)
@@ -24,3 +38,14 @@ class Book(models.Model):
     # added available
     def __str__(self):
         return self.title
+    
+
+class BooksToUser(models.Model):
+    """
+        Simple, but inefficient ManyToMany model of Books
+        to User.
+    """
+    book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    
+    
