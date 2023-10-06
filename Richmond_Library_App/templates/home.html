@@ -11,6 +11,8 @@
       <h1>Book Dashboard</h1>
       <div class="book-container">
         {% for book in books %}
+        {% comment %} sets book card to be a clickable link via book title {% endcomment %}
+        <a href="{% url 'Book' bookname=book.title %}">
         <div class="book-card">
           <img class="book-image" src="{{ book.image.url }}" alt="{{ book.title }} Cover">
           <div class="book-info">
@@ -22,6 +24,7 @@
             <!-- end of book desciptions but can add more later on if needed -->
           </div>
         </div>
+      </a>
         {% endfor %}
       </div>
     </div>
