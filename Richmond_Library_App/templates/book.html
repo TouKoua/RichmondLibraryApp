@@ -1,0 +1,18 @@
+{% extends "pageBase.html" %}
+{% load static %}
+{% block stylesheet %}
+    <link href="{% static 'book.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block app_block %}
+        {% comment %} can be better styled, but displays all info {% endcomment %}
+        <h1 class="center">-INSERT BOOK NAME HERE-</h1>
+        {{book.title}}
+        {{book.author}}
+        {{book.isbn}}
+        {{book.year}}
+        {{book.publisher}}
+        {{book.copies}}
+        {{book.available}}
+
+{% endblock %}

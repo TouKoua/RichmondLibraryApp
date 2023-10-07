@@ -30,22 +30,15 @@ class Book(models.Model):
     """
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
-    isbn = models.CharField(max_length=20)
-    year = models.CharField(max_length=4)
+    isbn = models.IntegerField()
+    year = models.IntegerField()
     publisher = models.CharField(max_length=100)
     copies = models.IntegerField()
     available = models.IntegerField()
     # added available
     def __str__(self):
         return self.title
-    
 
-class BooksToUser(models.Model):
-    """
-        Simple, but inefficient ManyToMany model of Books
-        to User.
-    """
+class BooksToUsers(models.Model):
     book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    
-    
