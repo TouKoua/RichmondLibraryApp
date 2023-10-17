@@ -1,0 +1,25 @@
+{% extends "pageBase.html" %}
+{% load static %}
+{% block stylesheet %}
+    <link href="{% static 'users.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block app_block %}
+    <table class="center-table" style="border-spacing: 10px 0;">
+        <tr style="font-size: 25px;">
+            <td>Username</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Account Type</td>
+        </tr>
+    
+        {% for user in users %}
+            <tr>
+                <td>{{user.username}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.user_type}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
