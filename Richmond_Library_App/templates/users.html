@@ -5,21 +5,28 @@
 {% endblock %}
 
 {% block app_block %}
-    <table class="center-table" style="border-spacing: 10px 0;">
-        <tr style="font-size: 25px;">
-            <td>Username</td>
-            <td>Name</td>
-            <td>Email</td>
-            <td>Account Type</td>
-        </tr>
-    
-        {% for user in users %}
-            <tr>
-                <td>{{user.username}}</td>
-                <td>{{user.name}}</td>
-                <td>{{user.email}}</td>
-                <td>{{user.user_type}}</td>
+    <div class="center">
+        <table class="center-table" style="border-spacing: 10px 0;">
+            <tr style="font-size: 25px;">
+                <td>Username</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Account Type</td>
             </tr>
-        {% endfor %}
-    </table>
+        
+            {% for user in users %}
+                <tr>
+                    <td>{{user.username}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.user_type}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <a href="{% url 'CreateUser' %}">
+            <button>Create User</button>
+        </a>
+    </div>
+    
 {% endblock %}
