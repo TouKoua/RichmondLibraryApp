@@ -1,22 +1,32 @@
+{% extends "pageBase.html" %}
 {% load static %}
-<html>
-  <head>
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-    <link href="{% static 'home.css' %}" rel="stylesheet" type="text/css">
-  </head>
-  <body>
+{% block stylesheet %}
+  <link href="{% static 'home.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block app_block %}
+  <div class="container">
+  <!-- Display books -->
     <div class="container">
-      <ul class="nav bg-info">
-        <li class="nav-item">
-          <a class="nav-link link-light" href="">HOME</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link link-light" href="">MEMBERS</a>
-        </li>
-      </ul>
+      <h1>Book Dashboard</h1>
+      <div class="book-container">
+        {% for book in books %}
+        {% comment %} sets book card to be a clickable link via book title {% endcomment %}
+        <a href="{% url 'Book' bookname=book.title %}">
+        <div class="book-card">
+          <img class="book-image" src="{{ book.image.url }}" alt="{{ book.title }} Cover">
+          <div class="book-info">
+            <h3>{{ book.title }}</h3>
+            <p>Author: {{ book.author }}</p>
+            <p>Publisher: {{ book.publisher }}</p>
+            <p>Copies: {{ book.copies }}</p>
+            <p>Available: {{ book.available }}</p>
+            <!-- end of book desciptions but can add more later on if needed -->
+          </div>
+        </div>
+      </a>
+        {% endfor %}
+      </div>
     </div>
-    <h1>Hello World!</h1>
-  </body>
-</html>
+  </div>
+{% endblock %}
