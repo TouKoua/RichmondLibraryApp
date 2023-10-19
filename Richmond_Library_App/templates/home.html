@@ -7,16 +7,30 @@
     <link href="{% static 'home.css' %}" rel="stylesheet" type="text/css">
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="static\images\mps_logo1.png" alt=" Logo">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link link-light" href="#">HOME</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link-light" href="#">MEMBERS</a>
+            </li>
+            <!-- Add more navigation links here -->
+          </ul>
+        </div>
+      </div>
+    </nav>
+
     <div class="container">
-      <ul class="nav bg-info">
-        <li class="nav-item">
-          <a class="nav-link link-light" href="">HOME</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link link-light" href="">MEMBERS</a>
-        </li>
-      </ul>
+      <h1>Hello World!</h1>
+      <!-- Your page content goes here -->
     </div>
-    <h1>Hello World!</h1>
   </body>
 </html>
