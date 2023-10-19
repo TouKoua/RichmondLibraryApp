@@ -1,6 +1,6 @@
 from django.views import View
 from django.shortcuts import render
-from django.forms import ModelForm
+from Richmond_Library_App.document import BookDocument
 
 
 
@@ -8,5 +8,7 @@ from django.forms import ModelForm
 class Test(View):
   
     def get(self, request):
-        return render(request, "login.html", {})
-    
+        searchquery = request.GET.get('searchquery')
+        result = BookDocument.search().query("match", title=searchquery)
+        qs = result.to_queryset()
+        return render(request, "test.html", {"result":qs})
