@@ -16,9 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Richmond_Library_App.views.home import Home
+from Richmond_Library_App.views.home import Home, home_view_with_permission
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Home.as_view(), name = "Dashboard"),
+    path('', home_view_with_permission, name = "Dashboard"),
 ]
