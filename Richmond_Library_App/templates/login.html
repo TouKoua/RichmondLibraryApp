@@ -1,5 +1,6 @@
 {% load static %}
 <html>
+
 <head>
     {% load bootstrap5 %}
     {% bootstrap_css %}
@@ -7,24 +8,47 @@
     <link href="{% static 'login.css' %}" rel="stylesheet" type="text/css">
 </head>
 
-<body>
+<body class="bg-light-blue"> <!-- Assuming you'll set the background color in your CSS -->
 
-    <div class="container mt-5">
-        <h2>Login</h2>
-        <form action='' method="post">
-            {% csrf_token %}
-            <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" required>
+
+    <div class="white-box d-flex" style="margin-bottom: 100px; margin-top: 100px;">
+
+        <div class="container mt-5">
+            <div class="d-flex justify-content-center align-items-center">
+                <!-- 50px is just an example value -->
+                <img src="{% static 'path_to_mps_logo.png' %}" alt="MPS Logo" class="mb-4">
             </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+            
+            <div class="card mx-auto" style="max-width: 400px;">
+                <div class="card-body"> 
+                    <h2 class="text-center">Sign in</h2> 
+
+                    <form action='' method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 mb-2">Login</button>
+                        <div class="text-center">
+                            <a href="#">Ask a Teacher</a>
+                        </div>
+                    </form>
+                    <!-- Can wrap container style for python below (CSS, JavaScript) -->
+                    <div class="text-center text-danger mt-2">{{errorMessage}}</div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-        <!-- Can wrap container style for python below (CSS, JavaScript) -->
-        {{errorMessage}}
+    
+    </div>
+        
+
+        <!-- If you need sign-in options, you can add them here -->
+
     </div>
 
 </body>
