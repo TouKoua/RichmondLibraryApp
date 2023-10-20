@@ -7,7 +7,7 @@ class Login(View):
   
     def get(self, request):
         return render(request, "login.html", {})
-    
+
     def post(self, request):
         # grabs the username and password provided
         # from the form on login.html
@@ -20,9 +20,9 @@ class Login(View):
             request.session['name'] = name
             request.session['password'] = password
             return redirect('/home/')
-
         else:
             return render(request, "login.html", {"errorMessage": "Invalid username or password"})
+        
 
 # function that checks if the given username and password
 # of associated with an administrative account        

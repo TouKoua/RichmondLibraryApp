@@ -18,8 +18,10 @@ from django.contrib import admin
 from django.urls import path
 from Richmond_Library_App.views.home import Home
 from Richmond_Library_App.views.login import Login
+from Richmond_Library_App.views.result import Result
 from Richmond_Library_App.views.book import BookPage
 from Richmond_Library_App.views.users import UsersPage, CreateUser
+from Richmond_Library_App.views.profile import Profile 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,4 +32,6 @@ urlpatterns = [
     path('book/<str:bookname>/', BookPage.as_view(), name="Book"),
     path('users/', UsersPage.as_view(), name="Users"),
     path('users/createuser', CreateUser.as_view(), name="CreateUser")
+    path('result/', Result.as_view(), name="Result"),
+    path('profile/', Profile.as_view(), name="Profile"),
 ]

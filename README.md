@@ -27,3 +27,26 @@ python -m django --version
 The next thing we need to do is install bootstrap. This project uses Bootstrap 5
 Run this command to install Bootstrap:
 pip install django-bootstrap-v5
+
+# Install ElasticSearch
+The next thing we need to do is install Elasticsearch. 
+Download ElasticSearch here:
+https://www.elastic.co/downloads/elasticsearch
+There are two installers, one for Windows and one for Mac. Take the one that fits your system.
+I was working with Windows, so this section will follow that installation.
+After downloading the file, extract the files to where you can find them/want them. (Preferrably, near the root folder of your project).
+Now go into the folder, go into the bin folder, and find elasticsearch.bat. This is the file we will run
+Starting that file will run the server and setup everything you need to run elasticsearch locally.
+At the end, you should see things for Kibana and Docker. Ignore those and look for where the password
+for the elastic user is. Copy that and save it somewhere, you will need this later.
+Now go back to the project and open the settings file and find the ElasticSearch_DSL section.
+Place the password you got in the http_auth section.
+You will also need to provide the path to the elasticsearch certificate from the project root folder.
+In the elasticsearch folder, the certificate is located at config/certs/http_ca.ct
+
+# ElasticSearch DSL
+This project also uses Elasticsearcg DSL
+First, Run this command to install the required files:
+pip install django-elasticsearch-dsl
+Second, add 'django_elasticsearch_dsl' to the INSTALLED_APPS in settings.py
+Third, define ELASTICSEARCH_DSL in settings.py.
