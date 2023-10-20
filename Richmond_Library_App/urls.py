@@ -20,6 +20,7 @@ from Richmond_Library_App.views.home import Home
 from Richmond_Library_App.views.login import Login
 from Richmond_Library_App.views.result import Result
 from Richmond_Library_App.views.book import BookPage
+from Richmond_Library_App.views.profile import Profile 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,4 +30,5 @@ urlpatterns = [
     # the book name.
     path('book/<str:bookname>/', BookPage.as_view(), name="Book"),
     path('result/', Result.as_view(), name="Result"),
+    path('profile/', Profile.as_view(), name="Profile"),
 ]
