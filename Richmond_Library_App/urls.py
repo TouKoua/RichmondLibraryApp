@@ -31,7 +31,7 @@ urlpatterns = [
     # the book name.
     path('book/<str:bookname>/', BookPage.as_view(), name="Book"),
     path('users/', UsersPage.as_view(), name="Users"),
-    path('users/createuser', CreateUser.as_view(), name="CreateUser")
+    path('users/createuser', CreateUser.as_view(), name="CreateUser"),
     path('result/', Result.as_view(), name="Result"),
     path('profile/', Profile.as_view(), name="Profile"),
 ]
