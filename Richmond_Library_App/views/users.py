@@ -8,27 +8,17 @@ class UsersPage(View):
         users = User.objects.all()
         return render(request, "users.html", {'users': users})
     
-    # def post(self, request):
-    #     User.objects.create(
-    #         request.POST.get("username"),
-    #         request.POST.get("password"),
-    #         request.POST.get("username"),
-    #         request.POST.get("password"),
-    #         request.POST.get("user_type")
-    #     )
-    #     return render(request, "")
-    
 class CreateUser(View):
     def get(self, request):
         return render(request, "createuser.html")
     
     def post(self, request):
         User.objects.create(
-            request.POST.get("username"),
-            request.POST.get("password"),
-            request.POST.get("username"),
-            request.POST.get("password"),
-            request.POST.get("user_type")
+            username=request.POST.get("username"),
+            password=request.POST.get("password"),
+            name=request.POST.get("username"),
+            email=request.POST.get("password"),
+            user_type=request.POST.get("user_type")
         )
         users = User.objects.all()
-        return render(request, "{% url 'Users' %}", {'users': users})
+        return render(request, "users.html", {'users': users})
