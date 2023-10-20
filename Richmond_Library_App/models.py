@@ -2,7 +2,15 @@ import django.db.models as models
 
 
 # Create your models here.
+
 class User(models.Model):
+    """
+        Model to represent Users of the library application
+        containing the username, password, name, email, and
+        usertype.
+    """
+    # could probably remove username as a field and have email be
+    # a unique identifier instead.
     username = models.CharField(max_length=20)
     password = models.CharField(max_length=20)
     name = models.CharField(max_length=40)
@@ -20,10 +28,16 @@ class User(models.Model):
             return False    
     
 
+
 class Book(models.Model):
+    """
+        Model to represent Books of the library application
+        containing the title, author, isbn, year, publisher,
+        number of copies, and number available.
+    """
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
-    isbn = models.IntegerField()
+    isbn = models.IntegerField(default=0)
     year = models.IntegerField()
     publisher = models.CharField(max_length=100)
     copies = models.IntegerField()

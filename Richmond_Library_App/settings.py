@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Richmond_Library_App',
     'bootstrap5',
+    'django_elasticsearch_dsl',
 ]
 
 MIDDLEWARE = [
@@ -82,6 +83,13 @@ DATABASES = {
     }
 }
 
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': 'https://localhost:9200',
+        'http_auth': ('elastic', 'Qo*cisAZQzQNkc*40zVl'),
+        'ca_certs': 'D:/ElasticSearch/elasticsearch-8.10.4/config/certs/http_ca.crt',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
