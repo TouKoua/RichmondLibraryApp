@@ -86,11 +86,10 @@ DATABASES = {
 ELASTICSEARCH_DSL = {
     'default': {
         'hosts': 'https://localhost:9200',
-        'http_auth': ('elastic', 'passwordhere'),
-        'ca_certs': 'path to certification here',
+        'http_auth': ('elastic', 'Qo*cisAZQzQNkc*40zVl'),
+        'ca_certs': 'D:/ElasticSearch/elasticsearch-8.10.4/config/certs/http_ca.crt',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators

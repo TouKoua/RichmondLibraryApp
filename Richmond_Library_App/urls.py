@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from Richmond_Library_App.views.home import Home
 from Richmond_Library_App.views.login import Login
-from Richmond_Library_App.views.test import Test
+from Richmond_Library_App.views.result import Result
 from Richmond_Library_App.views.book import BookPage
 
 urlpatterns = [
@@ -28,5 +28,5 @@ urlpatterns = [
     # <str:bookname> will set url to be modifiable depending on
     # the book name.
     path('book/<str:bookname>/', BookPage.as_view(), name="Book"),
-    path('test/', Test.as_view(), name="Test"),
+    path('result/', Result.as_view(), name="Result"),
 ]
