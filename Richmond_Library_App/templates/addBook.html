@@ -1,0 +1,15 @@
+{% extends "pageBase.html" %}
+{% load static %}
+
+{% block stylesheet %}
+  <link href="{% static 'home.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block app_block %}
+  <h1>Add a New Book</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+  </form>
+{% endblock %}

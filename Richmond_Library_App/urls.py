@@ -16,9 +16,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Richmond_Library_App.views.home import Home, home_view_with_permission
+from Richmond_Library_App.views.home import home_view_with_permission
+from Richmond_Library_App.views.login import Login
+from Richmond_Library_App.views.result import Result
+from Richmond_Library_App.views.book import BookPage
+from Richmond_Library_App.views.users import UsersPage, CreateUser
+from Richmond_Library_App.views.profile import Profile 
+from Richmond_Library_App.views.addBook import BookCreateView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_view_with_permission, name = "Dashboard"),
+    path('', Login.as_view(), name = "Login"),
+    path('home/', home_view_with_permission, name="Home"),
+    # <str:bookname> will set url to be modifiable depending on
+    # the book name.
+    path('book/<str:bookname>/', BookPage.as_view(), name="Book"),
+    path('users/', UsersPage.as_view(), name="Users"),
+    path('users/createuser', CreateUser.as_view(), name="CreateUser"),
+    path('add_book/', BookCreateView.as_view(), name='add_book'),
+    path('result/', Result.as_view(), name="Result"),
+    path('profile/', Profile.as_view(), name="Profile"),
 ]
