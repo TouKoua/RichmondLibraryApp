@@ -1,7 +1,104 @@
 body {
     background-color: #D9D9D9;
+    font-family: Arial, sans-serif;
 }
 
-/* 215FAC, blue*/
-/* F3CD3B, yellow */
-/* D9D9D9, gray */
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.left-section {
+    flex: 1;
+    padding: 20px;
+}
+
+.right-section {
+    flex: 2;
+    padding: 20px;
+}
+
+.profile-box {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.profile-box h2 {
+    color: #215FAC;
+}
+
+.user-data {
+    list-style: none;
+    padding: 0;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.user-data li {
+    padding: 10px 20px;
+    border-bottom: 1px solid #D9D9D9;
+}
+
+.user-data li:last-child {
+    border-bottom: none;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.tabs button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background-color: #215FAC;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+}
+
+.tabs button:last-child {
+    margin-right: 0;
+}
+
+.tabs button:hover {
+    background-color: #F3CD3B;
+}
+
+.content-area {
+    width: 100%;
+}
+
+.content-box {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s linear;
+}
+
+.progress-section {
+    clear: both;
+    margin-top: 20px;
+}
+
+.progress-bar {
+    height: 30px;
+    background-color: #D9D9D9;
+    border-radius: 15px;
+    /* Placeholder for progress bar, add your specific progress bar logic or styles here */
+}
