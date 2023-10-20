@@ -31,9 +31,7 @@ urlpatterns = [
     # <str:bookname> will set url to be modifiable depending on
     # the book name.
     path('book/<str:bookname>/', BookPage.as_view(), name="Book"),
-    path('add_book/', BookCreateView.as_view(), name='add_book')
-
-,
+    path('add_book/', BookCreateView.as_view(), name='add_book'),
     path('result/', Result.as_view(), name="Result"),
     path('profile/', Profile.as_view(), name="Profile"),
 ]
