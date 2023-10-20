@@ -12,6 +12,13 @@ class User(models.Model):
     def __str__(self):
         return self.name
     
+    def login(self, username, password):
+        try:
+            user = User.objects.get(username=username, password=password)
+            return True
+        except:
+            return False    
+    
 
 class Book(models.Model):
     title = models.CharField(max_length=100)
