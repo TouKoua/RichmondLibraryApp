@@ -3,6 +3,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Richmond_Library_App.settings")
 django.setup()
 from Richmond_Library_App.models import Book
 
+
+# Run the populate.py to fill out book database with given information
 def populate():
     booklist = [("The Way of Kings", "Sanderson, Brandon", 9780765365279, 2011, "Tor Fantasy", 1, 1),
             ("Word of Radiance", "Sanderson, Brandon", 9780765365286, 2015, "Tor Fantasy", 1, 1),
