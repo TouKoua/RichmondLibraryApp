@@ -2,14 +2,34 @@
 {% load static %}
 
 {% block stylesheet %}
-  <link href="{% static 'home.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'addbook.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block app_block %}
   <h1>Add a New Book</h1>
-  <form method="post">
+  <form class="add-book-form" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title" required>
+
+    <label for="author">Author</label>
+    <input type="text" name="author" id="author" required>
+
+    <label for="isbn">ISBN</label>
+    <input type="number" name="isbn" id="isbn" required>
+
+    <lable for="year">Year</label>
+    <input type="number" name="year", id="year" required>
+
+    <lable for="publisher">Publisher</label>
+    <input type="text" name="publisher", id="publisher" required>
+
+    <lable for="copies">Copies</label>
+    <input type="number" name="copies", id="copies" required>
+
+    <lable for="available">Available</label>
+    <input type="number" name="available", id="available" required>
     <button type="submit">Submit</button>
   </form>
+  {{ message }}
 {% endblock %}
