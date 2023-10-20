@@ -5,5 +5,58 @@
 {% endblock %}
 
 {% block app_block %}
+<div class="main-container">
+    <div class="left-section">
+        <div class="profile-box">
+            <h2>Profile</h2>
+        </div>
+        <ul class="user-data">
+            <li><strong>Name: </strong>{{ user.name }}</li>
+            <li><strong>Username: </strong>{{ user.username }}</li>
+            <li><strong>Email: </strong>{{ user.email }}</li>
+        </ul>
+    </div>
+
+    <div class="right-section">
+        <div class="tabs">
+            <button onclick="showContent('achievements')">Achievements</button>
+            <button onclick="showContent('loan')">Loan</button>
+            <button onclick="showContent('request')">Request</button>
+            <button onclick="showContent('messages')">Messages</button>
+        </div>
+
+        <div class="content-area">
+            <div class="content-box" id="content-display"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showContent(contentType) {
+        const contentBox = document.getElementById('content-display');
+        contentBox.style.visibility = "visible";
+        contentBox.style.opacity = "1";
+
+        switch (contentType) {
+            case 'achievements':
+                contentBox.innerHTML = 'Achievements';
+                break;
+            case 'loan':
+                contentBox.innerHTML = 'Loan';
+                break;
+            case 'request':
+                contentBox.innerHTML = 'Request';
+                break;
+            case 'messages':
+                contentBox.innerHTML = 'Messages';
+                break;
+            default:
+                contentBox.innerHTML = '';
+                contentBox.style.visibility = "hidden";
+                contentBox.style.opacity = "0";
+                break;
+        }
+    }
+</script>
 
 {% endblock %}
