@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Richmond_Library_App.views.home import home_view_with_permission
+from Richmond_Library_App.views.home import Home
 from Richmond_Library_App.views.login import Login
 from Richmond_Library_App.views.result import Result
 from Richmond_Library_App.views.book import BookPage
@@ -28,7 +28,7 @@ from Richmond_Library_App.views.addBook import BookCreateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Login.as_view(), name = "Login"),
-    path('home/', home_view_with_permission, name="Home"),
+    path('home/', Home.as_view(), name="Home"),
     # <str:bookname> will set url to be modifiable depending on
     # the book name.
     path('book/<str:bookname>/', BookPage.as_view(), name="Book"),

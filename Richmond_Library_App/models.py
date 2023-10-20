@@ -3,6 +3,7 @@ import django.db.models as models
 
 # Create your models here.
 
+# Note, we are not using this for login. We will eventually have to decide if we want to stick with this model or update it to use Django's base user model.
 class User(models.Model):
     """
         Model to represent Users of the library application

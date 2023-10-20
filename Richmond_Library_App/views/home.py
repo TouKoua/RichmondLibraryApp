@@ -1,12 +1,11 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.views import View
 from Richmond_Library_App.models import User, Book  # Import the Book model
 
-def has_permission1(user):
-    return user.has_perm('auth.view')
-    # Replace 'auth.view_user' with the actual permission string for permission1
-
+@method_decorator(login_required, name="get")
 class Home(View):
     def get(self, request):
         # Set the number of books you want to display on the homepage
@@ -20,9 +19,3 @@ class Home(View):
 
         # Render the template with the context data
         return render(request, "home.html", context)
-
-# Convert the class-based view to a function-based view using .as_view()
-home_view = Home.as_view()
-
-# Apply the @user_passes_test decorator to the function-based view
-home_view_with_permission = user_passes_test(has_permission1)(home_view)
