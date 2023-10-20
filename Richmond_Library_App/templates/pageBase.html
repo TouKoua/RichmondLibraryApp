@@ -22,12 +22,29 @@
               <a class="nav-link link-light" href="{% url 'Home' %}">HOME</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link link-light" href="{% url 'Profile' %}">PROFILE</a>
               <a class="nav-link link-light" href="{% url 'add_book' %}">ADD BOOK</a>
             </li>
             <!-- Add more navigation links here -->
           </ul>
         </div>
       </div>
+
+      {% comment %} search bar {% endcomment %}
+      <form action="{% url 'Result' %}" class="input-group w-50 form-outline" 
+      style="margin: 0 auto; margin-right: 10px;" method="GET">
+        <select name="filter" > 
+          <option value="Title">Title</option> 
+          <option value="Author">Author</option> 
+          <option value="Publisher">Publisher</option> 
+        </select>
+        <input type="text" id="searchquery" class="form-control" name="searchquery" />
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-search">Search</i>
+        </button>
+      </form>
+
+      
     </nav>
     {% block app_block %}
         <h1>This should not render on the page</h1>
