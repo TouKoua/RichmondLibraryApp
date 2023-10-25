@@ -1,5 +1,5 @@
 body {
-    background-color: #215fac;
+    background-color: #d9d9d9;
 }
 
 /* 215FAC, blue*/
@@ -50,4 +50,70 @@ body {
 
 .book-card:hover .book-info {
   opacity: 1;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 40px; /* Adjust the width as needed */
+  height: 40px; /* Adjust the height as needed */
+  top: 50%; /* Adjust the vertical position as needed */
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.2); /* Adjust the background color and opacity as needed */
+  border: none; /* Remove the border */
+  border-radius: 50%; /* Create a circular hitbox */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 20px; /* Adjust the width to match the arrow size */
+  height: 20px; /* Adjust the height to match the arrow size */
+  /* background-image: url('path-to-your-arrow-image.png');  Optionally, use a custom arrow image */
+  background-size: cover; /* Adjust the background size as needed */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Optionally, you can style the arrows when hovered */
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background: rgba(255, 255, 255, 0.2); /* Adjust the hover background color and opacity as needed */
+}
+
+/* Style for the introductory image container */
+.intro-image-container {
+  position: relative;
+  text-align: center;
+}
+
+/* Style for the introductory image */
+.intro-image {
+  width: 100%; /* Adjust the width as needed */
+  height: 35%; /* Adjust the width as needed */
+}
+
+/* Style for the text overlay with a shadow */
+.intro-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff; /* Text color */
+  font-size: 3em; /* Use em units for responsive font size */
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 1); /* Shadow effect */
+}
+
+/* Style for the link */
+.view-all-books-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.view-all-books-link a {
+ display: inline-block;
+ background-color: #215FAC;
+ color: white;
+ padding: 10px 20px;
+ border-radius: 5px;
+ text-decoration: none;
+ font-size: 18px;
 }
