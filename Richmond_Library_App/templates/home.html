@@ -6,6 +6,9 @@
 
 {% block app_block %}
   <div class="container">
+  {% if user.is_authenticated %}
+    <h3>You are signed in as {{ user.email }}</h3>
+  {% endif %}
   <!-- Display books -->
     <div class="container">
       <h1>Book Dashboard</h1>

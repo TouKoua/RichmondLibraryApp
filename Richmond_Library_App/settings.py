@@ -30,6 +30,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+SITE_ID=2
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,7 +42,23 @@ INSTALLED_APPS = [
     'Richmond_Library_App',
     'bootstrap5',
     'django_elasticsearch_dsl',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google'
 ]
+
+# Specification for social account api parameters
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {"accesss_type": "online"},
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -50,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'Richmond_Library_App.urls'
@@ -86,8 +105,8 @@ DATABASES = {
 ELASTICSEARCH_DSL = {
     'default': {
         'hosts': 'https://localhost:9200',
-        'http_auth': ('elastic', 'Qo*cisAZQzQNkc*40zVl'),
-        'ca_certs': 'D:/ElasticSearch/elasticsearch-8.10.4/config/certs/http_ca.crt',
+        'http_auth': ('elastic', 'Dj=8HObTQfQOk*Qi4Tv-'),
+        'ca_certs': '../elasticsearch-8.10.3/config/certs/http_ca.crt',
     }
 }
 
@@ -133,6 +152,11 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL = ''
-LOGIN_REDIRECT_URL = 'home/'
+# Authentication backends that allow us to use APIs for login.
+AUTHENTICATION_BACKENDS =(
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend"
+)
+
+LOGIN_REDIRECT_URL = ''
 LOGOUT_REDIRECT_URL = ''

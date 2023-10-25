@@ -25,10 +25,10 @@
               <a class="nav-link link-light" href="{% url 'Profile' %}">PROFILE</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link link-light" href="{% url 'add_book' %}">ADD BOOK</a>
+              <a class="nav-link link-light" href="{% url 'Users' %}">USERS</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link link-light" href="{% url 'Users' %}">USERS</a>
+              <a class="nav-link link-light" href="{% url 'AddBook' %}">ADD BOOK</a>
             </li>
             <!-- Add more navigation links here -->
           </ul>
@@ -49,6 +49,8 @@
         </button>
       </form>
 
+      <!--Logout Button-->
+      <a href="{% url 'Logout' %}">Logout</a>
       
     </nav>
     {% block app_block %}

@@ -50,3 +50,11 @@ First, Run this command to install the required files:
 pip install django-elasticsearch-dsl
 Second, add 'django_elasticsearch_dsl' to the INSTALLED_APPS in settings.py
 Third, define ELASTICSEARCH_DSL in settings.py.
+
+# Social Account Authentication
+This project also has the option to authenticate using Google accounts.
+We need to install the package that has this functionality.
+Do this by running the following command
+pip install django-allauth
+
+Everything should be setup correctly, so you just need to run the project.

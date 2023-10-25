@@ -1,7 +1,7 @@
 from django.views import View
 from django.shortcuts import render, redirect
 from django.forms import ModelForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 class Login(View):
     
@@ -21,4 +21,24 @@ class Login(View):
             return redirect('/home/')
         else:
             return render(request, "login.html", {"errorMessage": "Invalid username or password"})
-    
+        
+
+# function that checks if the given username and password
+# of associated with an administrative account        
+def Admin(name, password):
+    user = User.objects.get(username=name, password=password)
+    if user.user_type == 'admin':
+        return True
+
+# function that checks if user is within the database
+def checkUser(name):
+    try:
+        user = User.objects.get(username=name)
+    except:
+        return False
+    return True
+
+class Logout(View):
+    def get(self, request):
+        logout(request)
+        return render(request, "login.html", {"errorMessage": "You have been logged out!"})

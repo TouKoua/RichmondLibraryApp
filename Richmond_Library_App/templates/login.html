@@ -16,7 +16,7 @@
         <div class="container mt-5">
             <div class="d-flex justify-content-center align-items-center">
                 <!-- 50px is just an example value -->
-                <img src="{% static 'path_to_mps_logo.png' %}" alt="MPS Logo" class="mb-4">
+                <img src="{% static 'images/mps_logo1.png' %}" alt="MPS Logo" class="mb-4">
             </div>
             
             <div class="card mx-auto" style="max-width: 400px;">
@@ -38,6 +38,9 @@
                         <div class="text-center">
                             <a href="#">Ask a Teacher</a>
                         </div>
+                        {% load socialaccount %}
+                        <h2>Google Login</h2>
+                        <a href="{% provider_login_url 'google' %}?next={% url 'Home' %}">Login with Google</a>
                     </form>
                     <!-- Can wrap container style for python below (CSS, JavaScript) -->
                     <div class="text-center text-danger mt-2">{{errorMessage}}</div>
