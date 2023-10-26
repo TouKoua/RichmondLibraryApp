@@ -43,10 +43,16 @@ class Book(models.Model):
     publisher = models.CharField(max_length=100)
     copies = models.IntegerField()
     available = models.IntegerField()
+    image = models.ImageField(upload_to='static\images', null=True, blank=True)
     # added available
     def __str__(self):
         return self.title
 
+
+class Genre(models.Model):
+    genre_name = models.CharField(max_length=100, unique=True)
+    book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True)
+    
 class BooksToUsers(models.Model):
     book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
