@@ -1,18 +1,34 @@
 {% extends "pageBase.html" %}
 {% load static %}
 {% block stylesheet %}
-    <link href="{% static 'book.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'book.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block app_block %}
-        {% comment %} can be better styled, but displays all info {% endcomment %}
-        <h1 class="center">-INSERT BOOK NAME HERE-</h1>
-        {{book.title}}
-        {{book.author}}
-        {{book.isbn}}
-        {{book.year}}
-        {{book.publisher}}
-        {{book.copies}}
-        {{book.available}}
-
+<div class="book-container">
+    <div class="book-image-container">
+        <img src="{{ book.cover_image_url }}" alt="{{book.title}} cover" class="book-image">
+    </div>
+    <div class="book-content">
+        <div class="book-header">
+            <h1 class="book-title">{{book.title}}</h1>
+            <p>By {{book.author}}</p>
+            <p>Copies Available: {{book.available}}</p>
+        </div>
+        <div class="book-attributes">
+            <div class="book-attribute">
+                <div class="attribute-label">Publisher</div>
+                <div class="attribute-value">{{book.publisher}}</div>
+            </div>
+            <div class="book-attribute">
+                <div class="attribute-label">Year</div>
+                <div class="attribute-value">{{book.year}}</div>
+            </div>
+            <div class="book-attribute">
+                <div class="attribute-label">ISBN</div>
+                <div class="attribute-value">{{book.isbn}}</div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
