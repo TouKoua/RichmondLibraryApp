@@ -36,7 +36,7 @@ class Book(models.Model):
         containing the title, author, isbn, year, publisher,
         number of copies, and number available.
     """
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, unique=True)
     author = models.CharField(max_length=100)
     isbn = models.IntegerField(default=0)
     year = models.IntegerField()

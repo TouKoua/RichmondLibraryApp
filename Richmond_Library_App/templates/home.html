@@ -17,7 +17,7 @@
         {% comment %} sets book card to be a clickable link via book title {% endcomment %}
         <a href="{% url 'Book' bookname=book.title %}">
         <div class="book-card">
-          <img class="book-image" src='static\images\harrypotterandthesorcererstonecoverart.jpg' alt="{{ book.title }}">
+          <img class="book-image" src='\{{book.image}}' alt="{{ book.title }}">
           <div class="book-info">
             <h3>{{ book.title }}</h3>
             <p>Author: {{ book.author }}</p>
