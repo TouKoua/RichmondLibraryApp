@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-SITE_ID=2
+SITE_ID=3
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -157,6 +157,11 @@ AUTHENTICATION_BACKENDS =(
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend"
 )
+
+# Skips the white confirmation page and goes right to selecting google account to login with
+SOCIALACCOUNT_LOGIN_ON_GET=True
+
+AUTH_USER_MODEL = "Richmond_Library_App.User"
 
 LOGIN_REDIRECT_URL = ''
 LOGOUT_REDIRECT_URL = ''

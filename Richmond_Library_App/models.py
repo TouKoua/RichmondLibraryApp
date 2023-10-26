@@ -1,10 +1,11 @@
 import django.db.models as models
+from django.contrib.auth.models import AbstractUser
 
 
 # Create your models here.
 
 # Note, we are not using this for login. We will eventually have to decide if we want to stick with this model or update it to use Django's base user model.
-class User(models.Model):
+class User(AbstractUser):
     """
         Model to represent Users of the library application
         containing the username, password, name, email, and
@@ -19,14 +20,7 @@ class User(models.Model):
     user_type = models.CharField(max_length=10) # added user type
     
     def __str__(self):
-        return self.name
-    
-    def login(self, username, password):
-        try:
-            user = User.objects.get(username=username, password=password)
-            return True
-        except:
-            return False    
+        return self.username
     
 
 
