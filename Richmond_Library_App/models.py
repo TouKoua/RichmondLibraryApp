@@ -3,6 +3,7 @@ import django.db.models as models
 
 # Create your models here.
 
+# Note, we are not using this for login. We will eventually have to decide if we want to stick with this model or update it to use Django's base user model.
 class User(models.Model):
     """
         Model to represent Users of the library application
@@ -35,17 +36,23 @@ class Book(models.Model):
         containing the title, author, isbn, year, publisher,
         number of copies, and number available.
     """
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, unique=True)
     author = models.CharField(max_length=100)
     isbn = models.IntegerField(default=0)
     year = models.IntegerField()
     publisher = models.CharField(max_length=100)
     copies = models.IntegerField()
     available = models.IntegerField()
+    image = models.ImageField(upload_to='static\images', null=True, blank=True)
     # added available
     def __str__(self):
         return self.title
 
+
+class Genre(models.Model):
+    genre_name = models.CharField(max_length=100, unique=True)
+    book = models.ManyToManyField(Book, null=True)
+    
 class BooksToUsers(models.Model):
     book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)

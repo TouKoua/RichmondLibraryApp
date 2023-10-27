@@ -1,33 +1,23 @@
 from django.views import View
 from django.shortcuts import render, redirect
 from django.forms import ModelForm
-from Richmond_Library_App.models import User, Book
+from django.contrib.auth import authenticate, login, logout
 
 class Login(View):
-  
+    
     def get(self, request):
         return render(request, "login.html", {})
-
     def post(self, request):
         # grabs the username and password provided
         # from the form on login.html
         name = request.POST.get('username')
         password = request.POST.get('password')
-        
-        # This is an if statement that uses the checkUser
-        # function to validify that the given username
-        # has an associated user in the database.
-        # for some reason it does not display message to
-        # login.html, will fix later.
-        if checkUser(name) == False:
-            context = {'errorMessage': 'User does not exist'}
-            return render(request, 'login.html', context)
-        
-        # function that checks if the associated username
-        # and password are of administrative status
-        if Admin(name, password):
-            request.session['name'] = name
-            request.session['password'] = password
+        # This is now using Django's Authentification system.
+        request.session['name'] = name
+        request.session['password'] = password
+        user = authenticate(request, username=name, password=password)
+        if user is not None:
+            login(request, user)
             return redirect('/home/')
         else:
             return render(request, "login.html", {"errorMessage": "Invalid username or password"})
@@ -47,3 +37,8 @@ def checkUser(name):
     except:
         return False
     return True
+
+class Logout(View):
+    def get(self, request):
+        logout(request)
+        return render(request, "login.html", {"errorMessage": "You have been logged out!"})

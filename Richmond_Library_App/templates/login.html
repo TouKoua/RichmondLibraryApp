@@ -38,6 +38,9 @@
                         <div class="text-center">
                             <a href="#">Ask a Teacher</a>
                         </div>
+                        {% load socialaccount %}
+                        <h2>Google Login</h2>
+                        <a href="{% provider_login_url 'google' %}?next={% url 'Home' %}">Login with Google</a>
                     </form>
                     <!-- Can wrap container style for python below (CSS, JavaScript) -->
                     <div class="text-center text-danger mt-2">{{errorMessage}}</div>
