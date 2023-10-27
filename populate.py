@@ -9,7 +9,7 @@ def populate():
     booklist = [("The Way of Kings", "Sanderson, Brandon", 9780765365279, 2011, "Tor Fantasy", 1, 1),
             ("Word of Radiance", "Sanderson, Brandon", 9780765365286, 2015, "Tor Fantasy", 1, 1),
             ("Oathbringer", "Sanderson, Brandon", 9783453270381, 2017, "Tor Fantasy", 1, 1),
-            ("Harry Potter and the Socercer's Stone", "J.K. Rowling", 9780590353427, 1997, "Scholastic", 1, 1),
+            ("Harry Potter and the Sorcercer's Stone", "J.K. Rowling", 9780590353427, 1997, "Scholastic", 1, 1),
             ("Harry Potter and the Chamber of Secrets", "J.K. Rowling", 9780439064866, 1998, "Scholastic", 1, 1),
             ("Harry Potter and the Prisoner of Azkaban", "J.K. Rowling", 9780439655484, 1999, "Scholastic", 1, 1),
             ("Harry Potter and the Goblet of Fire", "J.K. Rowling", 9780439139601, 2000, "Scholastic", 1, 1),

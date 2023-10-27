@@ -41,7 +41,8 @@
         <select name="filter" > 
           <option value="Title">Title</option> 
           <option value="Author">Author</option> 
-          <option value="Publisher">Publisher</option> 
+          <option value="Publisher">Publisher</option>
+          <option value="Genre">Genre</option> 
         </select>
         <input type="text" id="searchquery" class="form-control" name="searchquery" />
         <button type="submit" class="btn btn-primary">
@@ -49,6 +50,8 @@
         </button>
       </form>
 
+      <!--Logout Button-->
+      <a href="{% url 'Logout' %}">Logout</a>
       
     </nav>
     {% block app_block %}

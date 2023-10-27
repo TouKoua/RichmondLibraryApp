@@ -1,14 +1,33 @@
 body {
-    background-color: #215fac;
+    /* background-color: #D9D9D9; */
+    background-color: #215FAC;
 }
 
-.center {
+.main-container {
+    padding: 40px 100px;
+    /* Centers the "Create User" button on the page */
     text-align: center;
 }
 
-.center-table {
-    margin-left: auto;
-    margin-right: auto;
+.user-table-container {
+    background-color: #FFFFFF;
+    padding: 15px 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.user-table {
+    width: 100%; /* Stretches table out inside <div>*/
+}
+
+.user-table-head {
+    font-size: 25px;
+    color: #215FAC; /* Determines font color*/
+}
+
+.user-table-row {
+    border-bottom: 1px solid #D9D9D9;
 }
 
 

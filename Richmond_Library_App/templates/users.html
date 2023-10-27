@@ -5,28 +5,30 @@
 {% endblock %}
 
 {% block app_block %}
-    <div class="center">
-        <table class="center-table" style="border-spacing: 10px 0;">
-            <tr style="font-size: 25px;">
-                <td>Username</td>
-                <td>Name</td>
-                <td>Email</td>
-                <td>Account Type</td>
-            </tr>
-        
-            {% for user in users %}
-                <tr>
-                    <td>{{user.username}}</td>
-                    <td>{{user.name}}</td>
-                    <td>{{user.email}}</td>
-                    <td>{{user.user_type}}</td>
+    <div class="main-container">
+        <div class="user-table-container">
+            <table class="user-table">
+                <tr class="user-table-head">
+                    <td>Username</td>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Account Type</td>
                 </tr>
-            {% endfor %}
-        </table>
-        <br>
+            
+                {% for user in users %}
+                    <tr class="user-table-row">
+                        <td>{{user.username}}</td>
+                        <td>{{user.name}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.user_type}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <!-- <br>
         <a href="{% url 'CreateUser' %}">
             <button>Create User</button>
-        </a>
+        </a> -->
     </div>
     
 {% endblock %}

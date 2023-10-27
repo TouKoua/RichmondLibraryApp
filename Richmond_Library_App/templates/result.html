@@ -12,7 +12,7 @@
         {% for book in result %}
         <a href="{% url 'Book' bookname=book.title %}">
             <div class="book-card">
-                <img class="book-image" src="{{ book.image.url }}" alt="{{ book.title }} Cover">
+                <img class="book-image" src="\{{book.image}}" alt="{{ book.title }} Cover">
                 <div class="book-info">
                     <h3>{{ book.title }}</h3>
                     <p class="author">{{ book.author }}</p>

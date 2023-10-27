@@ -15,9 +15,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from Richmond_Library_App.views.home import Home
-from Richmond_Library_App.views.login import Login
+from Richmond_Library_App.views.login import Login, Logout
 from Richmond_Library_App.views.result import Result
 from Richmond_Library_App.views.book import BookPage
 from Richmond_Library_App.views.users import UsersPage, CreateUser
@@ -28,6 +28,8 @@ from Richmond_Library_App.views.addBook import BookCreateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Login.as_view(), name = "Login"),
+    path("accounts/", include("allauth.urls")),
+    path('logout/', Logout.as_view(), name="Logout"),
     path('home/', Home.as_view(), name="Home"),
     # <str:bookname> will set url to be modifiable depending on
     # the book name.

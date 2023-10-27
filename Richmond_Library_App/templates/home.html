@@ -5,14 +5,17 @@
 {% endblock %}
 
 {% block app_block %}
-<div class="container">
-  <div class="intro-image-container">
+<div class="intro-image-container">
     <!-- Currently have a AI image as the stand-in; should replace in the future --> 
     <img class="intro-image" src="{% static 'images/library_photo.jpg' %}" alt="MPS Library Introduction">
     <div class="intro-text">MPS Library</div>
   </div>
+<div class="container">
 
-  <div style="margin-top: 50px;"></div> 
+  <div style="margin-top: 50px;"></div>
+  {% if user.is_authenticated %}
+    <h3>You are signed in as {{ user.email }}</h3>
+  {% endif %}
 
   <h1 style="color: #215FAC;">Fiction</h1>
   <div id="bookCarouselF" class="carousel slide" data-bs-ride="carousel">
@@ -20,10 +23,10 @@
       <div class="carousel-item active">
         <div class="row">
           {% for book in books %}
-          <div class="col-md-4">
+          <div class="col-md-3">
             <a href="{% url 'Book' bookname=book.title %}">
               <div class="book-card">
-                <img class="book-image" src="{{ book.image.url }}" alt="{{ book.title }} Cover">
+                <img class="book-image" src="\{{book.image}}" alt="{{ book.title }} Cover">
                 <div class="book-info">
                   <h3>{{ book.title }}</h3>
                   <p>Author: {{ book.author }}</p>
@@ -34,7 +37,7 @@
               </div>
             </a>
           </div>
-          {% if forloop.counter|divisibleby:3 and not forloop.last %}
+          {% if forloop.counter|divisibleby:4 and not forloop.last %}
         </div>
       </div>
       <div class="carousel-item{% if forloop.last %} active{% endif %}">
@@ -62,10 +65,10 @@
       <div class="carousel-item active">
         <div class="row">
           {% for book in books %}
-          <div class="col-md-4">
+          <div class="col-md-3">
             <a href="{% url 'Book' bookname=book.title %}">
               <div class="book-card">
-                <img class="book-image" src="{{ book.image.url }}" alt="{{ book.title }} Cover">
+                <img class="book-image" src="\{{book.image}}" alt="{{ book.title }} Cover">
                 <div class="book-info">
                   <h3>{{ book.title }}</h3>
                   <p>Author: {{ book.author }}</p>
@@ -76,7 +79,7 @@
               </div>
             </a>
           </div>
-          {% if forloop.counter|divisibleby:3 and not forloop.last %}
+          {% if forloop.counter|divisibleby:4 and not forloop.last %}
         </div>
       </div>
       <div class="carousel-item{% if forloop.last %} active{% endif %}">
