@@ -1,33 +1,29 @@
 {% extends "pageBase.html" %}
 {% load static %}
 {% block stylesheet %}
-  <link href="{% static 'home.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'result.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block app_block %}
-
-{{ message }}
 <div class="container">
-    <!-- Display books -->
-      <div class="container">
-        <div class="book-container">
-          {% for book in result %}
-          <a href="{% url 'Book' bookname=book.title %}">
-          <div class="book-card">
-            <img class="book-image" src="{{ book.image.url }}" alt="{{ book.title }} Cover">
-            <div class="book-info">
-              <h3>{{ book.title }}</h3>
-              <p>Author: {{ book.author }}</p>
-              <p>Publisher: {{ book.publisher }}</p>
-              <p>Copies: {{ book.copies }}</p>
-              <p>Available: {{ book.available }}</p>
-              <!-- end of book desciptions but can add more later on if needed -->
+    <h2>Search Results</h2>
+    {{ message }}
+    <div class="book-container">
+        {% for book in result %}
+        <a href="{% url 'Book' bookname=book.title %}">
+            <div class="book-card">
+                <img class="book-image" src="{{ book.image.url }}" alt="{{ book.title }} Cover">
+                <div class="book-info">
+                    <h3>{{ book.title }}</h3>
+                    <p class="author">{{ book.author }}</p>
+                    <p><strong>Publisher:</strong> {{ book.publisher }}</p>
+                    <p><strong>Copies:</strong> {{ book.copies }}</p>
+                    <p><strong>Available:</strong> {{ book.available }}</p>
+                    <!-- You can add more information here -->
+                </div>
             </div>
-          </div>
         </a>
-          {% endfor %}
-        </div>
-      </div>
+        {% endfor %}
     </div>
-
+</div>
 {% endblock %}
