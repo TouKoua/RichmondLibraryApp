@@ -15,7 +15,7 @@ class User(AbstractUser):
     # a unique identifier instead.
     username = models.CharField(max_length=20)
     password = models.CharField(max_length=20)
-    name = models.CharField(max_length=40)
+    # removing the name field because django base model already has first_name and last_name as fields.
     email = models.EmailField(max_length=254)
     user_type = models.CharField(max_length=10) # added user type
     
@@ -30,17 +30,23 @@ class Book(models.Model):
         containing the title, author, isbn, year, publisher,
         number of copies, and number available.
     """
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, unique=True)
     author = models.CharField(max_length=100)
     isbn = models.IntegerField(default=0)
     year = models.IntegerField()
     publisher = models.CharField(max_length=100)
     copies = models.IntegerField()
     available = models.IntegerField()
+    image = models.ImageField(upload_to='static\images', null=True, blank=True)
     # added available
     def __str__(self):
         return self.title
 
+
+class Genre(models.Model):
+    genre_name = models.CharField(max_length=100, unique=True)
+    book = models.ManyToManyField(Book, null=True)
+    
 class BooksToUsers(models.Model):
     book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)

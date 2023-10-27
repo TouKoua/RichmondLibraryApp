@@ -30,6 +30,9 @@
             <li class="nav-item">
               <a class="nav-link link-light" href="{% url 'AddBook' %}">ADD BOOK</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link link-light" href="{% url 'Logout' %}">LOGOUT</a>
+            </li>
             <!-- Add more navigation links here -->
           </ul>
         </div>
@@ -41,16 +44,14 @@
         <select name="filter" > 
           <option value="Title">Title</option> 
           <option value="Author">Author</option> 
-          <option value="Publisher">Publisher</option> 
+          <option value="Publisher">Publisher</option>
+          <option value="Genre">Genre</option> 
         </select>
         <input type="text" id="searchquery" class="form-control" name="searchquery" />
         <button type="submit" class="btn btn-primary">
           <i class="fas fa-search">Search</i>
         </button>
       </form>
-
-      <!--Logout Button-->
-      <a href="{% url 'Logout' %}">Logout</a>
       
     </nav>
     {% block app_block %}

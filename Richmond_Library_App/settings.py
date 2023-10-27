@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-SITE_ID=3
+SITE_ID=4
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -105,10 +105,12 @@ DATABASES = {
 ELASTICSEARCH_DSL = {
     'default': {
         'hosts': 'https://localhost:9200',
-        'http_auth': ('elastic', 'Dj=8HObTQfQOk*Qi4Tv-'),
+        'http_auth': ('elastic', 'yH*isSMY*0xBT23asIb+'),
         'ca_certs': '../elasticsearch-8.10.3/config/certs/http_ca.crt',
     }
 }
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators

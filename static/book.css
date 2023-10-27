@@ -1,11 +1,60 @@
 body {
-    background-color: #215fac;
+    background-color: #215FAC;
+    font-family: Arial, sans-serif;
 }
 
-.center {
-    text-align: center;
+.book-container {
+    display: flex;
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #FFFFFF;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.book-image-container {
+    width: 250px;
+    height: 350px;
+    border: 3px solid #215FAC;
+    margin-right: 30px;
+}
 
-/* 215FAC, blue*/
-/* F3CD3B, yellow */
+.book-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.book-content {
+    flex: 1;
+}
+
+.book-header {
+    text-align: left;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.book-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.book-attributes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.book-attribute {
+    border: 2px solid #000000;
+    padding: 10px;
+}
+
+.attribute-label {
+    font-weight: bold;
+}
+
+.attribute-value {
+    text-align: left;
+}

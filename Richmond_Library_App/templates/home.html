@@ -5,31 +5,106 @@
 {% endblock %}
 
 {% block app_block %}
-  <div class="container">
+<div class="intro-image-container">
+    <!-- Currently have a AI image as the stand-in; should replace in the future --> 
+    <img class="intro-image" src="{% static 'images/library_photo.jpg' %}" alt="MPS Library Introduction">
+    <div class="intro-text">MPS Library</div>
+  </div>
+<div class="container">
+
+  <div style="margin-top: 50px;"></div>
   {% if user.is_authenticated %}
     <h3>You are signed in as {{ user.email }}</h3>
   {% endif %}
-  <!-- Display books -->
-    <div class="container">
-      <h1>Book Dashboard</h1>
-      <div class="book-container">
-        {% for book in books %}
-        {% comment %} sets book card to be a clickable link via book title {% endcomment %}
-        <a href="{% url 'Book' bookname=book.title %}">
-        <div class="book-card">
-          <img class="book-image" src="{{ book.image.url }}" alt="{{ book.title }} Cover">
-          <div class="book-info">
-            <h3>{{ book.title }}</h3>
-            <p>Author: {{ book.author }}</p>
-            <p>Publisher: {{ book.publisher }}</p>
-            <p>Copies: {{ book.copies }}</p>
-            <p>Available: {{ book.available }}</p>
-            <!-- end of book desciptions but can add more later on if needed -->
+
+  <h1 style="color: #215FAC;">Fiction</h1>
+  <div id="bookCarouselF" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="row">
+          {% for book in books %}
+          <div class="col-md-3">
+            <a href="{% url 'Book' bookname=book.title %}">
+              <div class="book-card">
+                <img class="book-image" src="\{{book.image}}" alt="{{ book.title }} Cover">
+                <div class="book-info">
+                  <h3>{{ book.title }}</h3>
+                  <p>Author: {{ book.author }}</p>
+                  <p>Publisher: {{ book.publisher }}</p>
+                  <p>Copies: {{ book.copies }}</p>
+                  <p>Available: {{ book.available }}</p>
+                </div>
+              </div>
+            </a>
           </div>
+          {% if forloop.counter|divisibleby:4 and not forloop.last %}
         </div>
-      </a>
-        {% endfor %}
+      </div>
+      <div class="carousel-item{% if forloop.last %} active{% endif %}">
+        <div class="row">
+          {% endif %}
+          {% endfor %}
+        </div>
       </div>
     </div>
+    <a class="carousel-control-prev" href="#bookCarouselF" role="button" data-bs-slide="prev" style="left: -50px;">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#bookCarouselF" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </a>
   </div>
+
+  <div style="margin-top: 50px;"></div> 
+
+  <h1 style="color: #215FAC;">Non-fiction</h1>
+  <div id="bookCarouselNF" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="row">
+          {% for book in books %}
+          <div class="col-md-3">
+            <a href="{% url 'Book' bookname=book.title %}">
+              <div class="book-card">
+                <img class="book-image" src="\{{book.image}}" alt="{{ book.title }} Cover">
+                <div class="book-info">
+                  <h3>{{ book.title }}</h3>
+                  <p>Author: {{ book.author }}</p>
+                  <p>Publisher: {{ book.publisher }}</p>
+                  <p>Copies: {{ book.copies }}</p>
+                  <p>Available: {{ book.available }}</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          {% if forloop.counter|divisibleby:4 and not forloop.last %}
+        </div>
+      </div>
+      <div class="carousel-item{% if forloop.last %} active{% endif %}">
+        <div class="row">
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#bookCarouselNF" role="button" data-bs-slide="prev" style="left: -50px;">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#bookCarouselNF" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </a>
+  </div>
+
+  <div style="margin-top: 100px;"></div> 
+
+  <!-- Link doesn't work because we don't have a books page, change this when page is made -->
+  <div class="view-all-books-link">
+    <a href="/view-all-books">View All Books</a>
+  </div>
+
+</div>
 {% endblock %}
