@@ -7,24 +7,22 @@ class Profile(View):
 
     def get(self, request):
 
-        # Check the users logged in 
-        name =  request.session.get('name', None)
-        if not name:
-            return redirect('/login/')
+        # Check the users logged in
+        if not request.user.is_authenticated:
+            return redirect("http://127.0.0.1:8000/")
         
         # Fetch user details
-        user = User.objects.get(username=name)
+        user = User.objects.get(username=request.user.username)
         return render(request, "profile.html", {"user": user})
     
     def post(self, request):
 
         # Check the users logged in 
-        name =  request.session.get('name', None)
-        if not name:
-            return redirect('/login/')
+        if not request.user.is_authenticated:
+            return redirect('')
         
         # Fetch user details
-        user = User.objects.get(username=name)
+        user = User.objects.get(username=request.user.username)
         
         # Update user details
         user.first_name = request.POST.get('first_name')

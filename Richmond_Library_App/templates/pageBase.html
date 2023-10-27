@@ -30,6 +30,9 @@
             <li class="nav-item">
               <a class="nav-link link-light" href="{% url 'AddBook' %}">ADD BOOK</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link link-light" href="{% url 'Logout' %}">LOGOUT</a>
+            </li>
             <!-- Add more navigation links here -->
           </ul>
         </div>
@@ -49,9 +52,6 @@
           <i class="fas fa-search">Search</i>
         </button>
       </form>
-
-      <!--Logout Button-->
-      <a href="{% url 'Logout' %}">Logout</a>
       
     </nav>
     {% block app_block %}
