@@ -51,7 +51,7 @@ class Book(models.Model):
 
 class Genre(models.Model):
     genre_name = models.CharField(max_length=100, unique=True)
-    book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True)
+    book = models.ManyToManyField(Book, null=True)
     
 class BooksToUsers(models.Model):
     book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True)
