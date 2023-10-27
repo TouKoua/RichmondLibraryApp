@@ -1,6 +1,7 @@
 body {
-    background-color: #D9D9D9;
-    font-family: Arial, sans-serif;
+    /* background-color: #D9D9D9; */
+    background-color: #215FAC;
+    /* font-family: Arial, sans-serif; */
 }
 
 .main-container {
@@ -58,7 +59,8 @@ body {
     flex: 1;
     padding: 10px;
     border: none;
-    background-color: #215FAC;
+    /* background-color: #215FAC; */
+    background-color: #9e9d9d;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -98,7 +100,8 @@ body {
 
 .progress-bar {
     height: 30px;
-    background-color: #D9D9D9;
+    /* background-color: #D9D9D9; */
+    background-color: #9e9d9d;
     border-radius: 15px;
     /* Placeholder for progress bar, add your specific progress bar logic or styles here */
 }

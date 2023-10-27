@@ -16,8 +16,8 @@ class CreateUser(View):
         User.objects.create(
             username=request.POST.get("username"),
             password=request.POST.get("password"),
-            name=request.POST.get("username"),
-            email=request.POST.get("password"),
+            name=request.POST.get("name"),
+            email=request.POST.get("email"),
             user_type=request.POST.get("user_type")
         )
         users = User.objects.all()
