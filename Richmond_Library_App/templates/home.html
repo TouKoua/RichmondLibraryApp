@@ -5,12 +5,12 @@
 {% endblock %}
 
 {% block app_block %}
-<div class="container">
-  <div class="intro-image-container">
+<div class="intro-image-container">
     <!-- Currently have a AI image as the stand-in; should replace in the future --> 
     <img class="intro-image" src="{% static 'images/library_photo.jpg' %}" alt="MPS Library Introduction">
     <div class="intro-text">MPS Library</div>
   </div>
+<div class="container">
 
   <div style="margin-top: 50px;"></div>
   {% if user.is_authenticated %}
