@@ -20,7 +20,7 @@ from Richmond_Library_App.views.home import Home
 from Richmond_Library_App.views.login import Login, Logout
 from Richmond_Library_App.views.result import Result
 from Richmond_Library_App.views.book import BookPage
-from Richmond_Library_App.views.users import UsersPage, CreateUser
+from Richmond_Library_App.views.users import UsersPage, EditUser
 from Richmond_Library_App.views.profile import Profile 
 from Richmond_Library_App.views.addBook import BookCreateView
 
@@ -35,7 +35,7 @@ urlpatterns = [
     # the book name.
     path('book/<str:bookname>/', BookPage.as_view(), name="Book"),
     path('users/', UsersPage.as_view(), name="Users"),
-    path('users/createuser', CreateUser.as_view(), name="CreateUser"),
+    path('users/edituser', EditUser.as_view(), name="CreateUser"),
     path('add_book/', BookCreateView.as_view(), name='AddBook'),
     path('result/', Result.as_view(), name="Result"),
     path('profile/', Profile.as_view(), name="Profile"),
