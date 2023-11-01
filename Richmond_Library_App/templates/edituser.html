@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block app_block %}
-    <h1>Create User</h1>
+    <h1>Edit User</h1>
 
     <a href="{% url 'Users' %}">
         <button>Cancel</button>
@@ -16,40 +16,40 @@
             <tr>
                 <input
                     type="text"
-                    name="username"
-                    placeholder="Username"
+                    name="_username"
+                    value="{{ user.username }}"
                 >
             </tr>
             <tr>
                 <input
                     type="text"
-                    name="password"
-                    placeholder="Password"
+                    name="_password"
+                    value="{{ user.password }}"
                 >
             </tr>
-            <tr>
+            <!-- <tr>
                 <input
                     type="text"
                     name="name"
                     placeholder="Name"
                 >
-            </tr>
+            </tr> -->
             <tr>
                 <input
                     type="text"
-                    name="email"
-                    placeholder="Email"
+                    name="_email"
+                    value="{{ user.email }}"
                 >
             </tr>
             <tr>
                 <input
                     type="text"
-                    name="user_type"
-                    placeholder="User Type"
+                    name="_user_type"
+                    value="{{ user.user_type }}"
                 >
             </tr>
         </table>
         <br>
-        <input type="submit" value="Create"/>
+        <input type="submit" value="Save"/>
     </form>
 {% endblock %}
