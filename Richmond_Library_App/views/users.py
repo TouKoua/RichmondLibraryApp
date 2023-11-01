@@ -9,8 +9,9 @@ class UsersPage(View):
         return render(request, "users.html", {'users': users})
     
 class EditUser(View):
-    def get(self, request):
-        return render(request, "edituser.html")
+    def get(self, request, user):
+        # Passes the user received from pressing edit button to the edit page
+        return render(request, "edituser.html", {'user': user})
     
     # def post(self, request):
     #     User.objects.create(

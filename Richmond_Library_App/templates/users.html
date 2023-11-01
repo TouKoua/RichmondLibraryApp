@@ -22,18 +22,14 @@
                         <td>{{user.email}}</td>
                         <td>{{user.user_type}}</td>
                         <td>
-                            <a href="{% url 'EditUser' %}">
-                            <button>Edit</button>
+                            <a href="{% url 'EditUser' user=user %}">
+                                <button>Edit</button>
                             </a>
                         </td>
                     </tr>
                 {% endfor %}
             </table>
         </div>
-        <!-- <br>
-        <a href="{% url 'EditUser' %}">
-            <button>Create User</button>
-        </a> -->
     </div>
     
 {% endblock %}
