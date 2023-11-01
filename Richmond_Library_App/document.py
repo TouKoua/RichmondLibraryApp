@@ -17,11 +17,12 @@ class BookDocument(Document):
         
         title = fields.TextField()
         author = fields.TextField()
-        # isbn = fields.LongField()
-        year = fields.Integer()
+        #isbn = fields.IntegerField()
+        year = fields.IntegerField()
         publisher = fields.TextField()
-        copies = fields.Integer()
-        available = fields.Integer()
+        copies = fields.IntegerField()
+        available = fields.IntegerField()
+        image = fields.TextField()
         
         # The fields of the model you want to be indexed in Elasticsearch
         fields = [
@@ -30,6 +31,7 @@ class BookDocument(Document):
             'publisher',
             'copies',
             'available',
+            'image',
         ]
         
 

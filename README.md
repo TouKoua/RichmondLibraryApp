@@ -34,7 +34,7 @@ Run this command to install Pillow.
 pip install Pillow
 
 # Install ElasticSearch
-The next thing we need to do is install Elasticsearch. 
+The next thing we need to do is install Elasticsearch.
 Download ElasticSearch here:
 https://www.elastic.co/downloads/elasticsearch
 There are two installers, one for Windows and one for Mac. Take the one that fits your system.
