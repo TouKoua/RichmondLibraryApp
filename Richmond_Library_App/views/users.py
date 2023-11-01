@@ -9,13 +9,22 @@ class UsersPage(View):
         return render(request, "users.html", {'users': users})
     
 class EditUser(View):
-    def get(self, request, user):
+    # def get(self, request, user):
+    #     # Passes the user received from pressing edit button to the edit page
+    #     return render(request, "edituser.html", {'user': user})
+
+    def get(self, request, _username):
         # Passes the user received from pressing edit button to the edit page
+        user = User.objects.get(username=_username)
         return render(request, "edituser.html", {'user': user})
     
-    def post(self, request, user):
+    def post(self, request, **kwargs):
+        user = User.objects.get(username=kwargs["_username"])
         user.username = request.POST.get("_username")
-        return render(request, "users.html")
+
+        # Need to get all of the users after editing the user info
+        users = User.objects.all()
+        return render(request, "users.html", {"users": users})
     
     # def post(self, request):
     #     User.objects.create(

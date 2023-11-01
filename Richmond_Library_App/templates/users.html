@@ -22,7 +22,7 @@
                         <td>{{user.email}}</td>
                         <td>{{user.user_type}}</td>
                         <td>
-                            <a href="{% url 'EditUser' user=user %}">
+                            <a href="{% url 'EditUser' _username=user.username %}">
                                 <button>Edit</button>
                             </a>
                         </td>
