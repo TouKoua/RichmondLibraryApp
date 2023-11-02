@@ -45,6 +45,9 @@ class GenreDocument(Document):
         
     class Django:
         model = Genre
+        
+        genre_name = fields.TextField()
+        
         fields = [
             'genre_name',
             

@@ -47,6 +47,9 @@ class Genre(models.Model):
     genre_name = models.CharField(max_length=100, unique=True)
     book = models.ManyToManyField(Book, null=True)
     
+    def __str__(self):
+        return self.genre_name
+    
 class BooksToUsers(models.Model):
     book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)

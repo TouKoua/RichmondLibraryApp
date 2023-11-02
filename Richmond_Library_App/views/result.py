@@ -19,15 +19,25 @@ class Result(View):
 def filterbooks(searchquery, filter):
     try:
         if filter == "Title":
-                booklist = list(BookDocument.search().query("match", title=searchquery))
+                qs = BookDocument.search().filter("match", title=searchquery)
+                qs = qs.to_queryset()
+                booklist = list(qs)
         elif filter == "Author":
-                booklist = list(BookDocument.search().query("match", author=searchquery))
+                qs = BookDocument.search().filter("match", author=searchquery)
+                qs = qs.to_queryset()
+                booklist = list(qs)
         elif filter == 'Publisher':
-                booklist = list(BookDocument.search().query("match", publisher=searchquery))
+                qs = BookDocument.search().filter("match", publisher=searchquery)
+                qs = qs.to_queryset()
+                booklist = list(qs)
         elif filter == 'Genre':
-                # booklist = list(GenreDocument.search().query("match", genre_name=searchquery))
-                # genre_object = Genre.objects.get(genre_name = booklist[0].genre_name)
-                booklist = list(Genre.objects.get(genre_name = searchquery).book.all())
+                # Query for the specfic genre
+                qs = GenreDocument.search().filter("match", genre_name=searchquery)
+                # Change it to django queryset
+                qs = qs.to_queryset()
+                # Get the book list from the many to many field
+                booklist = qs[0].book.all
+                print(booklist)
 
     except Exception as error:
         return booklist
