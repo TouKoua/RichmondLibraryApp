@@ -51,7 +51,7 @@ class BooksToUsers(models.Model):
     book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
-class collection(models.Model):
+class Collection(models.Model):
     collection_name = models.CharField(max_length=100)
     book = models.ManyToManyField(Book, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
