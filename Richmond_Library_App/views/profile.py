@@ -14,6 +14,8 @@ class Profile(View):
         # Fetch user details
         user = User.objects.get(username=request.user.username)
         book_list = user.reserved_books.all()
+        for book in book_list:
+            print("helloooooo", book.title)
         return render(request, "profile.html", {"user": user, 'books': book_list})
     
     def post(self, request):
