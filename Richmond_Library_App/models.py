@@ -32,7 +32,7 @@ class Book(models.Model):
     """
     title = models.CharField(max_length=100, unique=True)
     author = models.CharField(max_length=100)
-    isbn = models.IntegerField(default=0)
+    isbn = models.CharField(max_length=14)
     year = models.IntegerField()
     publisher = models.CharField(max_length=100)
     copies = models.IntegerField()
@@ -46,6 +46,9 @@ class Book(models.Model):
 class Genre(models.Model):
     genre_name = models.CharField(max_length=100, unique=True)
     book = models.ManyToManyField(Book, null=True)
+    
+    def __str__(self):
+        return self.genre_name
     
 class BooksToUsers(models.Model):
     book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True)
