@@ -32,7 +32,7 @@ class Book(models.Model):
     """
     title = models.CharField(max_length=100, unique=True)
     author = models.CharField(max_length=100)
-    isbn = models.IntegerField(default=0)
+    isbn = models.CharField(max_length=14)
     year = models.IntegerField()
     publisher = models.CharField(max_length=100)
     copies = models.IntegerField()

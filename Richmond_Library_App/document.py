@@ -17,7 +17,7 @@ class BookDocument(Document):
         
         title = fields.TextField()
         author = fields.TextField()
-        #isbn = fields.IntegerField()
+        isbn = fields.TextField()
         year = fields.IntegerField()
         publisher = fields.TextField()
         copies = fields.IntegerField()
@@ -28,6 +28,7 @@ class BookDocument(Document):
         fields = [
             'title',
             'author',
+            'isbn',
             'publisher',
             'copies',
             'available',
