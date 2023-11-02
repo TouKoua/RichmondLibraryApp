@@ -37,12 +37,16 @@
         contentBox.style.visibility = "visible";
         contentBox.style.opacity = "1";
 
+        var myList = {{ book_list|safe }};
+
         switch (contentType) {
             case 'achievements':
                 contentBox.innerHTML = 'Achievements';
                 break;
             case 'reserved':
-                {user.reserved_books}
+                book_list.forEach(function(item) {
+                    contentBox.innerHTML += item + '<br>';
+                });
                 break;
             case 'request':
                 contentBox.innerHTML = 'Request';

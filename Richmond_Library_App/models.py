@@ -34,7 +34,7 @@ class User(AbstractUser):
     # could probably remove username as a field and have email be
     # a unique identifier instead.
     username = models.CharField(max_length=20)
-    password = models.CharField(max_length=20)
+    password = models.CharField(max_length=200)
     # removing the name field because django base model already has first_name and last_name as fields.
     email = models.EmailField(max_length=254)
     user_type = models.CharField(max_length=10) # added user type

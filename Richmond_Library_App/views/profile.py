@@ -13,7 +13,8 @@ class Profile(View):
         
         # Fetch user details
         user = User.objects.get(username=request.user.username)
-        return render(request, "profile.html", {"user": user})
+        book_list = user.reserved_books.all()
+        return render(request, "profile.html", {"user": user, 'books': book_list})
     
     def post(self, request):
 
