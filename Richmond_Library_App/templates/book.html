@@ -29,6 +29,17 @@
                 <div class="attribute-value">{{book.isbn}}</div>
             </div>
         </div>
+    
+        <div class="reserveform">
+            <form name='reserveform' action="{% url 'Book' bookname=book.title %}" method="POST">
+                {% csrf_token %}
+                <button name="reserve" value="{{book.title}}">Reserve</button>
+            </form>
+        </div>
+
+
+    
+        
     </div>
 </div>
 {% endblock %}

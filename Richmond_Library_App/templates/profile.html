@@ -20,7 +20,7 @@
     <div class="right-section">
         <div class="tabs">
             <button onclick="showContent('achievements')">Achievements</button>
-            <button onclick="showContent('loan')">Loan</button>
+            <button onclick="showContent('reserved')">Reserved</button>
             <button onclick="showContent('request')">Request</button>
             <button onclick="showContent('messages')">Messages</button>
         </div>
@@ -41,8 +41,8 @@
             case 'achievements':
                 contentBox.innerHTML = 'Achievements';
                 break;
-            case 'loan':
-                contentBox.innerHTML = 'Loan';
+            case 'reserved':
+                {user.reserved_books}
                 break;
             case 'request':
                 contentBox.innerHTML = 'Request';
