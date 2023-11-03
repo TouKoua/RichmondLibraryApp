@@ -22,7 +22,7 @@ class BookCreateView(View):
         message = ""
         if(not isinstance(title,str) or
            (not isinstance(author,str)) or
-           (not isbn.isdigit()) or
+           (not isinstance(isbn, str)) or
            (not year.isdigit()) or
            (not isinstance(publisher,str)) or
            (not copies.isdigit()) or

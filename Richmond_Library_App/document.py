@@ -17,19 +17,22 @@ class BookDocument(Document):
         
         title = fields.TextField()
         author = fields.TextField()
-        # isbn = fields.LongField()
-        year = fields.Integer()
+        isbn = fields.TextField()
+        year = fields.IntegerField()
         publisher = fields.TextField()
-        copies = fields.Integer()
-        available = fields.Integer()
+        copies = fields.IntegerField()
+        available = fields.IntegerField()
+        image = fields.TextField()
         
         # The fields of the model you want to be indexed in Elasticsearch
         fields = [
             'title',
             'author',
+            'isbn',
             'publisher',
             'copies',
             'available',
+            'image',
         ]
         
 
@@ -42,6 +45,9 @@ class GenreDocument(Document):
         
     class Django:
         model = Genre
+        
+        genre_name = fields.TextField()
+        
         fields = [
             'genre_name',
             
