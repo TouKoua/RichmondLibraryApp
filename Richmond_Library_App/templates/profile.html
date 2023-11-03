@@ -36,6 +36,7 @@
                 </ul>
             </div>
         </div>
+       
     </div>
 </div>
 
@@ -43,7 +44,6 @@
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#collectionModal">
     Create Collection
   </button>
-  {{ message }}
   
   <!-- Modal -->
     <div class="modal fade" id="collectionModal" tabindex="-1" aria-labelledby="collectionModalLabel" aria-hidden="true">
@@ -54,18 +54,19 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{% url 'Profile' %}" method="post">
+                    <form method="post" action="">
                         {% csrf_token %}
-                        {{ add_book_form.as_p }}  <!-- Display the form fields -->
+                        {{ add_book_form.as_p }}  
+                    </form>
                 </div>
                 <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal" name="create_collection">Create a Collection</button>
-                    </form>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="create_collection">Create a Collection</button>
                 </div>
             </div>
         </div>
     </div>
+
     {% for collection in user_collection %}
         {% for book in collection.book.all %}
             {{ book }}
@@ -81,7 +82,7 @@
         switch (contentType) {
             case 'achievements':
                 contentBox.innerHTML = 'Achievements';
-                break;
+                break;s
             case 'loan':
                 contentBox.innerHTML = 'Loan';
                 break;
