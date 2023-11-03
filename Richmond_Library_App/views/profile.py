@@ -29,22 +29,22 @@ class Profile(View):
     def post(self, request):
         if not request.user.is_authenticated:
             return redirect('')
-        
+        # Get User information
         user = User.objects.get(username=request.user.username)
-        user.first_name = request.POST.get('first_name')
-        user.last_name = request.POST.get('last_name')
-        user.email_address = request.POST.get('email_address')
-        user.phone_number = request.POST.get('phone_number')
-        user.save()
-
+        user_collection = Collection.objects.filter(user=user)
+        
+        # Create Collection Modal Form
         if 'create_collection' in request.POST:
             # Handle the Create Collection action
-            add_book_form = AddBookToCollectionForm(request.POST)
+            add_book_form = AddBookToCollectionForm(data=request.POST)
             if add_book_form.is_valid():
                 collection_entry = add_book_form.save(commit=False)
                 collection_entry.user = request.user
                 collection_entry.save()
                 add_book_form.save_m2m()
+                render(request, "profile.html", {"user": user, "add_book_form": add_book_form, "user_collection": user_collection, "message": "Created new collection!"})
+            else:
+                render(request, "profile.html", {"user": user, "add_book_form": add_book_form, "user_collection": user_collection, "message": "Unable to create collection"})
 
         elif 'view_collections' in request.POST:
             # Handle the View Collections action
