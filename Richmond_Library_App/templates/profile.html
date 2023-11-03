@@ -48,15 +48,15 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="">
-                        {% csrf_token %}
-                        {{ add_book_form.as_p }}  
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" name="create_collection">Create a Collection</button>
-                </div>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    {{ add_book_form.as_p }}  
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="create_collection">Create a Collection</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
