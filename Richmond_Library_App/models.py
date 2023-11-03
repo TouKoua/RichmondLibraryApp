@@ -51,3 +51,11 @@ class Genre(models.Model):
     
     def __str__(self):
         return self.genre_name
+
+class Collection(models.Model):
+    collection_name = models.CharField(max_length=100)
+    book = models.ManyToManyField(Book, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return self.collection_name

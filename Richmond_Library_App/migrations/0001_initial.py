@@ -5,7 +5,56 @@ import django.contrib.auth.models
 from django.db import migrations, models
 import django.db.models.deletion
 import django.utils.timezone
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import User, Group, Permission
+from django.contrib.contenttypes.models import ContentType
 
+# Define a function to create or update groups based on the user's role
+def update_user_groups(sender, instance, **kwargs):
+    if kwargs.get('created', False):
+        # User is created
+        user = instance
+        if user.user_type == 'student':
+            student_group, created1 = Group.objects.get_or_create(name='student')
+            student_group.user_set.add(user)
+        elif user.user_type == 'teacher':
+            teacher_group, created2 = Group.objects.get_or_create(name='teacher')
+            teacher_group.user_set.add(user)
+        elif user.user_type == 'admin':
+            admin_group, created3 = Group.objects.get_or_create(name='admin')
+            admin_group.user_set.add(user)
+
+# Connect the function to the post_save signal for the User model
+@receiver(post_save, sender=User)
+def user_post_save(sender, instance, **kwargs):
+    update_user_groups(sender, instance, **kwargs)
+
+
+def create_custom_permission(codename, name, content_type):
+    try:
+        permission = Permission.objects.get(codename=codename, content_type=content_type)
+    except Permission.DoesNotExist:
+        permission = Permission.objects.create(codename=codename, name=name, content_type=content_type)
+    return permission
+
+# Define a content type for the model
+content_type_model_user = ContentType.objects.get_for_model(User)
+
+# Create custom permissions if they don't exist
+permission1 = create_custom_permission('view', 'Can view user', content_type_model_user)
+permission2 = create_custom_permission('recommend', 'Can recommend user', content_type_model_user)
+permission3 = create_custom_permission('edit', 'Can edit user', content_type_model_user)
+
+# Create groups
+student_group, created1 = Group.objects.get_or_create(name='student')
+teacher_group, created2 = Group.objects.get_or_create(name='teacher')
+admin_group, created3 = Group.objects.get_or_create(name='admin')
+
+# Assign permissions to groups
+student_group.permissions.add(permission1)
+teacher_group.permissions.add(permission1, permission2)
+admin_group.permissions.add(permission1, permission2, permission3)
 
 class Migration(migrations.Migration):
 
@@ -13,6 +62,12 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('auth', '0012_alter_user_first_name_max_length'),
+    ]
+
+    USER_TYPES = [
+        ('student', 'Student'),
+        ('teacher', 'Teacher'),
+        ('admin', 'Admin'),
     ]
 
     operations = [
@@ -30,6 +85,7 @@ class Migration(migrations.Migration):
                 ('image', models.ImageField(blank=True, null=True, upload_to='static\\images')),
             ],
         ),
+
         migrations.CreateModel(
             name='User',
             fields=[
@@ -45,7 +101,7 @@ class Migration(migrations.Migration):
                 ('password', models.CharField(max_length=20)),
                 ('name', models.CharField(max_length=40)),
                 ('email', models.EmailField(max_length=254)),
-                ('user_type', models.CharField(max_length=10)),
+                ('user_type', models.CharField(max_length=10, choices=USER_TYPES)),
                 ('groups', models.ManyToManyField(blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', related_name='user_set', related_query_name='user', to='auth.group', verbose_name='groups')),
                 ('user_permissions', models.ManyToManyField(blank=True, help_text='Specific permissions for this user.', related_name='user_set', related_query_name='user', to='auth.permission', verbose_name='user permissions')),
             ],
