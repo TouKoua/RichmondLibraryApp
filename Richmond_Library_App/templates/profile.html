@@ -20,20 +20,14 @@
     <div class="right-section">
         <div class="tabs">
             <button onclick="showContent('achievements')">Achievements</button>
-            <button onclick="showContent('loan')">Loan</button>
+            <button onclick="showContent('reserved')">Reserved</button>
             <button onclick="showContent('request')">Request</button>
             <button onclick="showContent('messages')">Messages</button>
         </div>
 
         <div class="content-area">
             <div class="content-box" id="content-display">
-                <!-- Display the user's book collection -->
-                <h2>Your Book Collection</h2>
-                <ul>
-                    {% for entry in user_collection %}
-                        <li>{{ entry.book.title }}</li>
-                    {% endfor %}
-                </ul>
+                
             </div>
         </div>
        
@@ -68,8 +62,9 @@
     </div>
 
     {% for collection in user_collection %}
+        <h3> {{ collection.collection_name }}</h3>
         {% for book in collection.book.all %}
-            {{ book }}
+            <h6>{{ book }}</h6>
         {% endfor %}
     {% endfor %}
 
@@ -82,9 +77,9 @@
         switch (contentType) {
             case 'achievements':
                 contentBox.innerHTML = 'Achievements';
-                break;s
-            case 'loan':
-                contentBox.innerHTML = 'Loan';
+                break;
+            case 'reserved':
+                contentBox.innerHTML = "<div style='text-align: center'>{% for book in books %} {{book.title}} | {{book.author}} | {{book.publisher}} <br> {% endfor %}</div>";
                 break;
             case 'request':
                 contentBox.innerHTML = 'Request';

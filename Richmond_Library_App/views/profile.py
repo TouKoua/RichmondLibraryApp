@@ -17,6 +17,7 @@ class Profile(View):
             return redirect("http://127.0.0.1:8000/")
         
         user = User.objects.get(username=request.user.username)
+        book_list = user.reserved_books.all()
         
         # Create an instance of the form for adding a book to the collection
         add_book_form = AddBookToCollectionForm()
@@ -24,7 +25,7 @@ class Profile(View):
         # Fetch the user's book collection
         user_collection = Collection.objects.filter(user=user)
         
-        return render(request, "profile.html", {"user": user, "add_book_form": add_book_form, "user_collection": user_collection})
+        return render(request, "profile.html", {"user": user, "add_book_form": add_book_form, "user_collection": user_collection, 'books': book_list})
 
     def post(self, request):
         if not request.user.is_authenticated:
