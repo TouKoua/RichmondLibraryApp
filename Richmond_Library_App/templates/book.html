@@ -7,7 +7,7 @@
 {% block app_block %}
 <div class="book-container">
     <div class="book-image-container">
-        <img src="{{ book.cover_image_url }}" alt="{{book.title}} cover" class="book-image">
+        <img src="\{{book.image}}" alt="{{book.title}} cover" class="book-image">
     </div>
     <div class="book-content">
         <div class="book-header">
@@ -29,6 +29,18 @@
                 <div class="attribute-value">{{book.isbn}}</div>
             </div>
         </div>
+        {{message}}
+    
+        <div class="reserveform">
+            <form name='reserveform' action="{% url 'Book' bookname=book.title %}" method="POST">
+                {% csrf_token %}
+                <button name="reserve" value="{{book.title}}">Reserve</button>
+            </form>
+        </div>
+
+
+    
+        
     </div>
 </div>
 {% endblock %}
