@@ -61,31 +61,6 @@
         </div>
     </div>
 
-    {% for collection in user_collection %}
-        <h3> {{ collection.collection_name }}</h3>
-        {% for book in collection.book.all %}
-            <h6>{{ book }}</h6>
-        {% endfor %}
-    {% endfor %}
-    
-    {% if user.type == teacher %}
-        <div style='text-align: center;'>
-            <form action="{% url 'Profile' %}" method="POST">
-            {% for book in books %}
-                {{book.title}} |
-                {% csrf_token %}
-                    <select>
-                        <option value="{{book.reserved}}">Reserved</option>
-                        <option value="Checked Out">Checked Out</option>
-                    </select>
-            {% endfor %}
-                <button type="submit">Save</button>
-            </form>
-        </div>
-    {% else %}
-
-    {% endif %}
-
 <script>
     function showContent(contentType) {
         const contentBox = document.getElementById('content-display');
