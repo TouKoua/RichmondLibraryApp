@@ -23,6 +23,7 @@ from Richmond_Library_App.views.book import BookPage
 from Richmond_Library_App.views.users import UsersPage, CreateUser
 from Richmond_Library_App.views.profile import Profile 
 from Richmond_Library_App.views.addBook import BookCreateView
+from Richmond_Library_App.views.remove_book import remove_book
 
 
 urlpatterns = [
@@ -39,5 +40,6 @@ urlpatterns = [
     path('add_book/', BookCreateView.as_view(), name='AddBook'),
     path('result/', Result.as_view(), name="Result"),
     path('profile/', Profile.as_view(), name="Profile"),
-    
+    path('remove_book/', remove_book, name='remove_book'),
+
 ]
