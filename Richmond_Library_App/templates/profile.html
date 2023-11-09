@@ -2,6 +2,53 @@
 {% load static %}
 {% block stylesheet %}
 <link href="{% static 'profile.css' %}" rel="stylesheet" type="text/css">
+<style>
+    /* Add your custom CSS styles here for improved appearance */
+    /* For a kids' library, consider using playful colors and fonts */
+    /* You can also add animated effects and icons for a fun look */
+
+    /* Add CSS for better table and book list styling */
+    .collection-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+    }
+
+    .collection-table th, .collection-table td {
+        padding: 10px;
+        text-align: left;
+    }
+
+    .collection-table th {
+        background-color: #f5f5f5;
+    }
+
+    .book-list {
+        list-style-type: disc;
+        margin: 0;
+        padding: 0 0 0 20px;
+    }
+
+    .pagination {
+        margin-top: 20px;
+    }
+
+    .pagination-link {
+        margin: 5px;
+        text-decoration: none;
+        padding: 5px 10px;
+        background-color: #337ab7;
+        color: #fff;
+        border: 1px solid #337ab7;
+        border-radius: 5px;
+    }
+
+    .current-page {
+        font-weight: bold;
+        margin: 0 10px;
+    }
+</style>
 {% endblock %}
 
 {% block app_block %}
@@ -27,46 +74,80 @@
 
         <div class="content-area">
             <div class="content-box" id="content-display">
-                
+
             </div>
         </div>
-       
+
     </div>
 </div>
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#collectionModal">
     Create Collection
-  </button>
-  
-  <!-- Modal -->
-    <div class="modal fade" id="collectionModal" tabindex="-1" aria-labelledby="collectionModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="collectionModalLabel">Create Collection</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="post" action="">
-                        {% csrf_token %}
-                        {{ add_book_form.as_p }}  
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" name="create_collection">Create a Collection</button>
-                </div>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="collectionModal" tabindex="-1" aria-labelledby="collectionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="collectionModalLabel">Create Collection</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="">
+                    {% csrf_token %}
+                    {{ add_book_form.as_p }}
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" name="create_collection">Create a Collection</button>
             </div>
         </div>
     </div>
+</div>
 
-    {% for collection in user_collection %}
-        <h3> {{ collection.collection_name }}</h3>
-        {% for book in collection.book.all %}
-            <h6>{{ book }}</h6>
+<!-- Table displaying collections -->
+<table class="table table-bordered table-striped collection-table">
+    <thead>
+        <tr>
+            <th>Collection Name</th>
+            <th>Books</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for collection in user_collection %}
+            <tr>
+                <td>{{ collection.collection_name }}</td>
+                <td>
+                    <ul class="book-list">
+                        {% for book in collection.book.all %}
+                            <li>{{ book.title }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
         {% endfor %}
-    {% endfor %}
+    </tbody>
+</table>
+
+<!-- Engaging Pagination for collections -->
+<div class="pagination">
+    {% if user_collection.has_previous %}
+        <a href="?collections_page=1" class="pagination-link">&laquo; First</a>
+        <a href="?collections_page={{ user_collection.previous_page_number }}" class="pagination-link">Previous</a>
+    {% endif %}
+    
+    <span class="current-page">
+        Page {{ user_collection.number }} of {{ user_collection.paginator.num_pages }}
+    </span>
+    
+    {% if user_collection.has_next %}
+        <a href="?collections_page={{ user_collection.next_page_number }}" class="pagination-link">Next</a>
+        <a href="?collections_page={{ user_collection.paginator.num_pages }}" class="pagination-link">Last &raquo;</a>
+    {% endif %}
+</div>
 
 <script>
     function showContent(contentType) {
