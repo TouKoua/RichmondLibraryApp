@@ -9,12 +9,18 @@ class BookPage(View):
 
   def post(self, request, bookname):
     book = get_book(bookname)
+    current_user = request.user
+    user_books = current_user.reserved_books.all()
 
     if not check_availability(book):
       message = 'book is not available'
       return render(request, "book.html", {'book': book, 'message': message})
+    elif reserve_check(book, user_books):
+      message = 'book is already reserved'
+      return render(request, "book.html", {'book': book, 'message': message})
     
-    current_user = request.user
+
+    book.reserved = True
     current_user.reserved_books.add(book)
     current_user.save()
     user_books = current_user.reserved_books.all()
@@ -38,6 +44,6 @@ def check_availability(book):
   return False
 
 def reserve_check(book, userbooks):
-    if not book in userbooks:
-      return False
-    return True
+    if book in userbooks:
+      return True
+    return False

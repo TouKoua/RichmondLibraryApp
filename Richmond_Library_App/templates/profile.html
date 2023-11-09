@@ -67,6 +67,24 @@
             <h6>{{ book }}</h6>
         {% endfor %}
     {% endfor %}
+    
+    {% if user.type == teacher %}
+        <div style='text-align: center;'>
+            <form action="{% url 'Profile' %}" method="POST">
+            {% for book in books %}
+                {{book.title}} |
+                {% csrf_token %}
+                    <select>
+                        <option value="{{book.reserved}}">Reserved</option>
+                        <option value="Checked Out">Checked Out</option>
+                    </select>
+            {% endfor %}
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    {% else %}
+
+    {% endif %}
 
 <script>
     function showContent(contentType) {
@@ -79,7 +97,18 @@
                 contentBox.innerHTML = 'Achievements';
                 break;
             case 'reserved':
-                contentBox.innerHTML = "<div style='text-align: center'>{% for book in books %} {{book.title}} | {{book.author}} | {{book.publisher}} <br> {% endfor %}</div>";
+                var content = "<div style='text-align: center'>" + 
+                              "{% for book in books %}" + 
+                              "{{book.title}} | " + 
+                              "{% if book.reserved == True %}" +
+                              "Reserved" +
+                              "{% else %}" +
+                              "Checked Out" +
+                              "{% endif %}" +
+                              "<br>" + 
+                              "{% endfor %}" + 
+                              "</div>"
+                contentBox.innerHTML = content;
                 break;
             case 'request':
                 contentBox.innerHTML = 'Request';

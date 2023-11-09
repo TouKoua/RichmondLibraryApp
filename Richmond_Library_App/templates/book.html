@@ -29,7 +29,6 @@
                 <div class="attribute-value">{{book.isbn}}</div>
             </div>
         </div>
-        {{message}}
     
         <div class="reserveform">
             <form name='reserveform' action="{% url 'Book' bookname=book.title %}" method="POST">
@@ -37,6 +36,7 @@
                 <button name="reserve" value="{{book.title}}">Reserve</button>
             </form>
         </div>
+        {{message}}
 
 
     

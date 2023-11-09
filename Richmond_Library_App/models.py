@@ -19,6 +19,8 @@ class Book(models.Model):
     copies = models.IntegerField()
     available = models.IntegerField()
     image = models.ImageField(upload_to='static\images', null=True, blank=True)
+    reserved = models.BooleanField(default=False)
+
     # added available
     def __str__(self):
         return self.title
@@ -39,7 +41,7 @@ class User(AbstractUser):
     email = models.EmailField(max_length=254)
     user_type = models.CharField(max_length=10) # added user type
 
-    reserved_books = models.ManyToManyField(Book, null=True)
+    reserved_books = models.ManyToManyField(Book, null=True, blank=True)
     
     def __str__(self):
         return self.username
