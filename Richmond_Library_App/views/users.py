@@ -20,7 +20,11 @@ class EditUser(View):
     
     def post(self, request, **kwargs):
         user = User.objects.get(username=kwargs["_username"])
-        user.username = request.POST.get("_username")
+        # user.username = request.POST.get("_username")
+        user.email = request.POST.get("_email")
+        user.password = request.POST.get("_password")
+        user.save()
+
 
         # Need to get all of the users after editing the user info
         users = User.objects.all()
