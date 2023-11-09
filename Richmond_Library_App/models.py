@@ -19,7 +19,9 @@ class Book(models.Model):
     copies = models.IntegerField()
     available = models.IntegerField()
     image = models.ImageField(upload_to='static\images', null=True, blank=True)
+
     reserved = models.BooleanField(default=False)
+    checkedout = models.BooleanField(default=False)
 
     # added available
     def __str__(self):
