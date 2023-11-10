@@ -38,9 +38,25 @@
             </form>
         </div>
 
-
+        <button class="remove-book-button" data-book-id="{{ book.id }}">Remove Book</button>
     
-        
     </div>
 </div>
+
+<script>
+    // JavaScript function to display the confirmation pop-up
+    document.addEventListener("DOMContentLoaded", function () {
+        const removeButtons = document.querySelectorAll(".remove-book-button");
+        removeButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                const bookId = this.getAttribute("data-book-id");
+                const confirmed = confirm("Are you sure you'd like to remove this book?");
+                if (confirmed) {
+                    // Redirect to the Django view for book removal with the bookId parameter
+                    window.location.href = "{% url 'remove_book' %}?book_id=" + bookId;
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}
