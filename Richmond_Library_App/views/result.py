@@ -28,6 +28,7 @@ class Result(View):
             authorFilter = filterForm.cleaned_data["author"]
             publisherFilter = filterForm.cleaned_data["publisher"]
             availableFilter = filterForm.cleaned_data["available"]
+            print(publisherFilter)
             for book in result:
                 removed = False
                 if(authorFilter):

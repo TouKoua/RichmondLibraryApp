@@ -1,0 +1,45 @@
+{% extends "pageBase.html" %}
+{% load static %}
+
+{% block stylesheet %}
+  <link href="{% static 'checkout.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block app_block %}
+  <div class="main-container">
+    Please select a user:  
+    <form class='inline' action='{% url 'Checkout' %}' method='POST'>
+      {% csrf_token %}
+      <select name='userselect'>
+        <option value=""></option>
+        {% for user in users%}
+          <option value="{{user.email}}">{{user.email}}</option>
+        {% endfor %}
+      </select>
+      <button type='submit' name='select_user'>Select</button>
+    </form>
+  </div>
+
+  <div class='book-container'>
+    {% for book in user_books %}
+      <div class='book-card'>
+        <img class="book-image" src="\{{book.image}}" alt="{{book.title}}">
+
+        <form action='{% url 'Checkout' %}' method='POST'>
+          {% csrf_token %}
+          <select name='book-status'>
+            {% if book.status == 'reserved' %}
+              <option value='{{book.title}}1'>Reserved</option>
+              <option value='{{book.title}}2'>Check Out</option>
+            {% else %}
+              <option value='{{book.title}}2'>Checked Out</option>
+              <option value='{{book.title}}1'>Reserve</option>
+            {% endif %}
+          </select>
+          <button type='submit' name='save' value='{{user_email}}'>Save</button>
+        </form>
+
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
