@@ -5,10 +5,21 @@
 {% endblock %}
 
 {% block app_block %}
-<div class="container">
-    <h2>Search Results</h2>
-    {{ message }}
-    <div class="book-container">
+<div class="row">
+    <div class="col-2">
+        <div class="container">
+            <h2>Search Filters</h2>
+            <form method="POST" action="">
+                {% csrf_token %}
+                {{ filterForm }}
+                <br />
+                <button class="btn btn-primary" type="submit" value="{{ searchquery }}" name="applyFilters">Apply Filters</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-8">
+        <h2>Search Results</h2>
+        <h6>{{ message }}</h6>
         {% for book in result %}
         <a href="{% url 'Book' bookname=book.title %}">
             <div class="book-card">
