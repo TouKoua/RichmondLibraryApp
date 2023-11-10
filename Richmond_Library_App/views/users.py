@@ -23,6 +23,7 @@ class EditUser(View):
         # user.username = request.POST.get("_username")
         user.email = request.POST.get("_email")
         user.password = request.POST.get("_password")
+        user.user_type=request.POST.get("_user_type")
         user.save()
 
 
