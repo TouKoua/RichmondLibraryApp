@@ -37,29 +37,29 @@
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#collectionModal">
     Create Collection
-  </button>
+</button>
   
   <!-- Modal -->
-    <div class="modal fade" id="collectionModal" tabindex="-1" aria-labelledby="collectionModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="collectionModalLabel">Create Collection</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="post" action="">
-                        {% csrf_token %}
-                        {{ add_book_form.as_p }}  
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" name="create_collection">Create a Collection</button>
-                </div>
+<div class="modal fade" id="collectionModal" tabindex="-1" aria-labelledby="collectionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="collectionModalLabel">Create Collection</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="">
+                    {% csrf_token %}
+                    {{ add_book_form.as_p }}  
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" name="create_collection">Create a Collection</button>
             </div>
         </div>
     </div>
+</div>
 
 <script>
     function showContent(contentType) {
@@ -75,11 +75,7 @@
                 var content = "<div style='text-align: center'>" + 
                               "{% for book in books %}" + 
                               "{{book.title}} | " + 
-                              "{% if book.reserved == True %}" +
-                              "Reserved" +
-                              "{% else %}" +
-                              "Checked Out" +
-                              "{% endif %}" +
+                              "{{book.status}}" +
                               "<br>" + 
                               "{% endfor %}" + 
                               "</div>"

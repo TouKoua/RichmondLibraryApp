@@ -19,8 +19,7 @@ class BookPage(View):
       message = 'book is already reserved'
       return render(request, "book.html", {'book': book, 'message': message})
     
-
-    book.reserved = True
+    book.status = 'reserved'
     current_user.reserved_books.add(book)
     current_user.save()
     user_books = current_user.reserved_books.all()

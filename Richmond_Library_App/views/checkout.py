@@ -1,63 +1,40 @@
 from django.shortcuts import render
 from django.views import View
-from Richmond_Library_App.models import Genre, Book
-
-
+from Richmond_Library_App.models import User, Book
 
 class Checkout(View):
     def get(self,request):
-        return render(request, 'addBook.html', {})
+        context = {'users': get_users()}
+        return render(request, 'checkout.html', context)
     
     def post(self, request):
-        title = request.POST.get("title")
-        author = request.POST.get("author")
-        genre = request.POST.get("genre")
-        isbn = request.POST.get("isbn")
-        year = request.POST.get("year")
-        publisher = request.POST.get("publisher")
-        image = request.FILES['image']
-        copies = request.POST.get("copies")
-        available = request.POST.get("available")
-        message = ""
-        if(not isinstance(title,str) or
-           (not isinstance(author,str)) or
-           (not isinstance(isbn, str)) or
-           (not year.isdigit()) or
-           (not isinstance(publisher,str)) or
-           (not copies.isdigit()) or
-           (not available.isdigit()) ):
-            message = "Invalid input"
-            return render(request, "addBook.html", {"message": message}) # Replace 'name_of_books_list_view' with the actual view name.
-        else:
-            book = Book.objects.create(title=title,
-                                       author=author,
-                                       isbn=isbn,
-                                       year=year,
-                                       publisher=publisher,
-                                       image=image,
-                                       copies=copies,
-                                       available=available)
-            book.save()
+        context = {}
+        
+        if 'select_user' in request.POST:
+            user_request = request.POST.get('userselect')
+            user_request = User.objects.get(email=user_request)
+            reserved_books = user_request.reserved_books.all()
+            context = {'users': get_users(), 'user_books': reserved_books, 'user_email': user_request.email}
             
-            genre_list = uppercase_genre(genre.split(" "))
-            parse_genre(genre_list, book)
+        elif 'save' in request.POST:
+            book_request = request.POST.get('book-status')
+            user_request = request.POST.get('save')
+            reserved_books = User.objects.get(email=user_request).reserved_books.all()
             
+            book_option = book_request[len(book_request)-1: len(book_request)]
+            book_request = Book.objects.get(title=book_request[0: len(book_request)-1])
             
-            message = "Successfully added Book!"
-            return render(request, 'addBook.html', {'message': message})
+            if book_option == '1':
+                book_request.status = 'reserved'
+                book_request.save()
+            elif book_option == '2':
+                book_request.status = 'checked out'
+                book_request.save()
+            context = {'users': get_users(), 'user_books': reserved_books, 'user_email': user_request}
+            
+        
+        return render(request, 'checkout.html', context)
 
-def uppercase_genre(list):
-    for i in range(len(list)):
-        list[i] = list[i][0].upper() + list[i][1:]
-    return list
 
-def parse_genre(list, book):
-    for i in list:
-        try:
-            genre_object = Genre.objects.get(genre_name=i)
-            genre_object.book.add(book)
-            genre_object.save()
-        except:
-            genre_object = Genre.objects.create(genre_name=i)
-            genre_object.book.add(book)
-            genre_object.save()
+def get_users():
+    return User.objects.all()

@@ -6,37 +6,40 @@
 {% endblock %}
 
 {% block app_block %}
-  <h1>Add a New Book</h1>
-  <form class="add-book-form" action='{% url 'AddBook' %}' method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <label for="title">Title</label>
-    <input type="text" name="title" id="title" required>
+  <div class="main-container">
+    Please select a user:  
+    <form class='inline' action='{% url 'Checkout' %}' method='POST'>
+      {% csrf_token %}
+      <select name='userselect'>
+        <option value=""></option>
+        {% for user in users%}
+          <option value="{{user.email}}">{{user.email}}</option>
+        {% endfor %}
+      </select>
+      <button type='submit' name='select_user'>Select</button>
+    </form>
+  </div>
 
-    <label for="author">Author</label>
-    <input type="text" name="author" id="author" required>
+  <div class='book-container'>
+    {% for book in user_books %}
+      <div class='book-card'>
+        <img class="book-image" src="\{{book.image}}" alt="{{book.title}}">
 
-    <lable for="genre">Genre(s) | (Please Put Spaces Between Genres)</label>
-    <input type="text" name="genre" id="genre" required>
+        <form action='{% url 'Checkout' %}' method='POST'>
+          {% csrf_token %}
+          <select name='book-status'>
+            {% if book.status == 'reserved' %}
+              <option value='{{book.title}}1'>Reserved</option>
+              <option value='{{book.title}}2'>Check Out</option>
+            {% else %}
+              <option value='{{book.title}}2'>Checked Out</option>
+              <option value='{{book.title}}1'>Reserve</option>
+            {% endif %}
+          </select>
+          <button type='submit' name='save' value='{{user_email}}'>Save</button>
+        </form>
 
-    <label for="isbn">ISBN</label>
-    <input type="text" name="isbn" id="isbn" required>
-
-    <lable for="year">Year</label>
-    <input type="number" name="year" id="year" required>
-
-    <lable for="publisher">Publisher</label>
-    <input type="text" name="publisher" id="publisher" required>
-
-    <lable for="coverart">Cover Art</label>
-    <input type="file" name="image" id="image" required>
-    <br>
-
-    <lable for="copies">Copies</label>
-    <input type="number" name="copies" id="copies" required>
-
-    <lable for="available">Available</label>
-    <input type="number" name="available" id="available" required>
-    <button type="submit">Submit</button>
-  </form>
-  {{ message }}
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}
