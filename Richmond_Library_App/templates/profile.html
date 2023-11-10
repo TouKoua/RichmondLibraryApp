@@ -115,7 +115,14 @@
                 contentBox.innerHTML = 'Achievements';
                 break;
             case 'reserved':
-                contentBox.innerHTML = "<div style='text-align: center'>{% for book in books %} {{book.title}} | {{book.author}} | {{book.publisher}} <br> {% endfor %}</div>";
+                var content = "<div style='text-align: center'>" + 
+                              "{% for book in books %}" + 
+                              "{{book.title}} | " + 
+                              "{{book.status}}" +
+                              "<br>" + 
+                              "{% endfor %}" + 
+                              "</div>"
+                contentBox.innerHTML = content;
                 break;
             case 'request':
                 contentBox.innerHTML = 'Request';
