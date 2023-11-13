@@ -24,15 +24,22 @@
             <li class="nav-item">
               <a class="nav-link link-light" href="{% url 'Profile' %}">PROFILE</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link link-light" href="{% url 'Users' %}">USERS</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link link-light" href="{% url 'AddBook' %}">ADD BOOK</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link link-light" href="{% url 'Checkout' %}">CHECKOUT</a>
-            </li>
+            {% if status == 'teacher' %}
+              <li class="nav-item">
+                <a class="nav-link link-light" href="{% url 'Checkout' %}">CHECKOUT</a>
+              </li>
+            {% endif %}
+            {% if status == 'admin' %}
+              <li class="nav-item">
+                <a class="nav-link link-light" href="{% url 'Users' %}">USERS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link-light" href="{% url 'AddBook' %}">ADD BOOK</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link-light" href="{% url 'Checkout' %}">CHECKOUT</a>
+              </li>
+            {% endif %}
             <li class="nav-item">
               <a class="nav-link link-light" href="{% url 'Logout' %}">LOGOUT</a>
             </li>

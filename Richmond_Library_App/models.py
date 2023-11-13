@@ -39,7 +39,7 @@ class User(AbstractUser):
     password = models.CharField(max_length=200)
     # removing the name field because django base model already has first_name and last_name as fields.
     email = models.EmailField(max_length=254)
-    user_type = models.CharField(max_length=10) # added user type
+    user_type = models.CharField(max_length=10, blank=True, default='student') # added user type
 
     reserved_books = models.ManyToManyField(Book, null=True, blank=True)
     

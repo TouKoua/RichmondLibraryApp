@@ -41,3 +41,7 @@ class EditUser(View):
     #     )
     #     users = User.objects.all()
     #     return render(request, "users.html", {'users': users})
+
+def get_user_status(request):
+    user = User.objects.get(username=request.user.username)
+    return user.user_type

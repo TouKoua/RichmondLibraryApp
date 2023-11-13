@@ -4,7 +4,7 @@ from Richmond_Library_App.models import User, Book
 
 class Checkout(View):
     def get(self,request):
-        context = {'users': get_users()}
+        context = {'users': get_users(), 'status': get_user_status(request)}
         return render(request, 'checkout.html', context)
     
     def post(self, request):
@@ -14,7 +14,7 @@ class Checkout(View):
             user_request = request.POST.get('userselect')
             user_request = User.objects.get(email=user_request)
             reserved_books = user_request.reserved_books.all()
-            context = {'users': get_users(), 'user_books': reserved_books, 'user_email': user_request.email}
+            context = {'users': get_users(), 'user_books': reserved_books, 'user_email': user_request.email, 'status': get_user_status(request)}
             
         elif 'save' in request.POST:
             book_request = request.POST.get('book-status')
@@ -30,7 +30,7 @@ class Checkout(View):
             elif book_option == '2':
                 book_request.status = 'checked out'
                 book_request.save()
-            context = {'users': get_users(), 'user_books': reserved_books, 'user_email': user_request}
+            context = {'users': get_users(), 'user_books': reserved_books, 'user_email': user_request, 'status': get_user_status(request)}
             
         
         return render(request, 'checkout.html', context)
@@ -38,3 +38,7 @@ class Checkout(View):
 
 def get_users():
     return User.objects.all()
+
+def get_user_status(request):
+    user = User.objects.get(username=request.user.username)
+    return user.user_type
