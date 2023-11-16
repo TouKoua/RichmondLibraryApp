@@ -72,4 +72,4 @@ class EditBook(View):
         book.save()
 
         # Redirect to the books page or any other page you prefer
-        return redirect('home')
+        return redirect('Home')
