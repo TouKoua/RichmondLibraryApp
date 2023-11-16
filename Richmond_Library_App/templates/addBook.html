@@ -7,7 +7,7 @@
 
 {% block app_block %}
   <h1>Add a New Book</h1>
-  <form class="add-book-form" action='{% url 'AddBook' %}' method="post" enctype="multipart/form-data">
+  <form class="add-book-form" action="{% url 'AddBook' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <label for="title">Title</label>
     <input type="text" name="title" id="title" required>
