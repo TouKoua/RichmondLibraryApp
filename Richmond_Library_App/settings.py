@@ -105,8 +105,8 @@ DATABASES = {
 ELASTICSEARCH_DSL = {
     'default': {
         'hosts': 'https://localhost:9200',
-        'http_auth': ('elastic', 'WKIv5PveQdVU1U3By8Yd'),
-        'ca_certs': 'C:/Users/Proje/Desktop/Projects/elasticsearch-8.10.4-windows-x86_64/elasticsearch-8.10.4/config/certs/http_ca.crt',
+        'http_auth': ('elastic', 'Qo*cisAZQzQNkc*40zVl'),
+        'ca_certs': 'D:\ElasticSearch\elasticsearch-8.10.4\config\certs\http_ca.crt',
     }
 }
 

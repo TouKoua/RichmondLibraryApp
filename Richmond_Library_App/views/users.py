@@ -1,9 +1,12 @@
 from django.views import View
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from Richmond_Library_App.models import User
 
 class UsersPage(View):
     def get(self, request):
+        if get_user_status(request) != 'admin':
+            return redirect('/home/')
+        
         # Gets list of all users and passes it to the user page
         users = User.objects.all()
         return render(request, "users.html", {'users': users})

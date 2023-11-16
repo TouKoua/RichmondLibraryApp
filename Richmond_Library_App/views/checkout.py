@@ -1,9 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from Richmond_Library_App.models import User, Book
 
 class Checkout(View):
     def get(self,request):
+        if get_user_status(request) != 'admin' and get_user_status(request) != 'teacher':
+            return redirect('/home/')
+        
         context = {'users': get_users(), 'status': get_user_status(request)}
         return render(request, 'checkout.html', context)
     

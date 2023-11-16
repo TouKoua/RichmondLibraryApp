@@ -1,12 +1,15 @@
 from django.shortcuts import render
 from django.views import View
 from Richmond_Library_App.models import Genre, Book, User
-from django.shortcuts import redirect
+from django.shortcuts import redirect, redirect
 
 
 
 class BookCreateView(View):
     def get(self,request):
+        if get_user_status(request) != 'admin':
+            return redirect('/home/')
+        
         return render(request, 'addBook.html', {'status': get_user_status(request)})
     
     def post(self, request):
