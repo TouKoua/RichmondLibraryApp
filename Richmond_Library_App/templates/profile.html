@@ -83,7 +83,13 @@
                     </ul>
                 </td>
                 <td class="collection-table-button-col">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editCollectionModal">
+                    <button
+                    type="button" 
+                    class="btn btn-primary" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#editCollectionModal" 
+                    data-bs-collectionModalLabel="{{collection.collection_name}}" 
+                    data-bs-book="{{collection.book.all}}">
                         Edit
                     </button>
                     <button type="button" class="btn btn-primary">
@@ -106,14 +112,13 @@
             <div class="modal-body">
                 <form method="post" action="">
                     {% csrf_token %}
-                    {{ add_book_form.as_p }}
-                
+                    {{ add_book_form }}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" name="save_collection">Save</button>
+                <button type="submit" class="btn btn-primary" name="save_collection">Save</button>
             </div>
-        </form>
+            </form>
         </div>
     </div>
 </div>
@@ -168,5 +173,27 @@
                 break;
         }
     }
+    /* Tried using JS to update the fields. This does not work currently
+    var collectionModal = document.getElementById('editCollectionModal')
+    collectionModal.addEventListener('show.bs.modal', function (event) {
+        // Button that triggered the modal
+        var button = event.relatedTarget
+        // Extract info from data-bs-* attributes
+        var collection_name = button.getAttribute('data-bs-collectionModalLabel')
+        var collection_books = button.getAttribute('data-bs-book')
+        // If necessary, you could initiate an AJAX request here
+        // and then do the updating in a callback.
+        //
+        // Update the modal's content.
+        var modalTitle = collectionModal.querySelector('.modal-title')
+        var modalBodyInput = collectionModal.querySelector('.modal-body input')
+        var modalBodySelect= collectionModal.querySelector('.modal-body select')
+        console.log(modalBodyInput)
+        console.log(modalBodySelect)
+
+        modalTitle.textContent = 'Edit Collection: ' + collection_name
+        modalBodyInput.value = collection_name
+        modalBodySelect.selected = collection_books
+    })*/
 </script>
 {% endblock %}
