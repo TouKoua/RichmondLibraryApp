@@ -2,6 +2,7 @@
 {% load static %}
 {% block stylesheet %}
 <link href="{% static 'profile.css' %}" rel="stylesheet" type="text/css">
+
 {% endblock %}
 
 {% block app_block %}
@@ -27,46 +28,81 @@
 
         <div class="content-area">
             <div class="content-box" id="content-display">
-                
+
             </div>
         </div>
-       
+
     </div>
 </div>
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#collectionModal">
     Create Collection
-  </button>
-  
-  <!-- Modal -->
-    <div class="modal fade" id="collectionModal" tabindex="-1" aria-labelledby="collectionModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="collectionModalLabel">Create Collection</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="collectionModal" tabindex="-1" aria-labelledby="collectionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="collectionModalLabel">Create Collection</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
                 <form method="post" action="">
                     {% csrf_token %}
-                    {{ add_book_form.as_p }}  
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="create_collection">Create a Collection</button>
-                    </div>
-                </form>
+                    {{ add_book_form.as_p }}
+                
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" name="create_collection">Create a Collection</button>
+            </div>
+        </form>
         </div>
     </div>
+</div>
 
-    {% for collection in user_collection %}
-        <h3> {{ collection.collection_name }}</h3>
-        {% for book in collection.book.all %}
-            <h6>{{ book }}</h6>
+<!-- Table displaying collections -->
+<table class="table table-bordered table-striped collection-table">
+    <thead>
+        <tr>
+            <th>Collection Name</th>
+            <th>Books</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for collection in user_collection %}
+            <tr>
+                <td>{{ collection.collection_name }}</td>
+                <td>
+                    <ul class="book-list">
+                        {% for book in collection.book.all %}
+                            <li>{{ book.title }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
         {% endfor %}
-    {% endfor %}
+    </tbody>
+</table>
+
+<!-- Engaging Pagination for collections -->
+<div class="pagination">
+    {% if user_collection.has_previous %}
+        <a href="?collections_page=1" class="pagination-link">&laquo; First</a>
+        <a href="?collections_page={{ user_collection.previous_page_number }}" class="pagination-link">Previous</a>
+    {% endif %}
+    
+    <span class="current-page">
+        Page {{ user_collection.number }} of {{ user_collection.paginator.num_pages }}
+    </span>
+    
+    {% if user_collection.has_next %}
+        <a href="?collections_page={{ user_collection.next_page_number }}" class="pagination-link">Next</a>
+        <a href="?collections_page={{ user_collection.paginator.num_pages }}" class="pagination-link">Last &raquo;</a>
+    {% endif %}
+</div>
 
 <script>
     function showContent(contentType) {
@@ -79,7 +115,14 @@
                 contentBox.innerHTML = 'Achievements';
                 break;
             case 'reserved':
-                contentBox.innerHTML = "<div style='text-align: center'>{% for book in books %} {{book.title}} | {{book.author}} | {{book.publisher}} <br> {% endfor %}</div>";
+                var content = "<div style='text-align: center'>" + 
+                              "{% for book in books %}" + 
+                              "{{book.title}} | " + 
+                              "{{book.status}}" +
+                              "<br>" + 
+                              "{% endfor %}" + 
+                              "</div>"
+                contentBox.innerHTML = content;
                 break;
             case 'request':
                 contentBox.innerHTML = 'Request';

@@ -60,6 +60,18 @@ body {
 
 .reserveform {
     position: relative;
-    bottom: -155;
-    right: -386;
+    bottom: -10;
+    right: -350;
+}
+
+.remove-book-button {
+    position: relative;
+    bottom: -10;
+    right: -350;
+}
+
+.edit-book-button {
+    position: relative;
+    bottom: -25;
+    right: -350;
 }

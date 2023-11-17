@@ -1,0 +1,43 @@
+{% extends "pageBase.html" %}
+{% load static %}
+
+{% block stylesheet %}
+  <link href="{% static 'addbook.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block app_block %}
+  <h1>Edit This Book</h1>
+  <form class="edit-book-form" action="{% url 'editBook' book_id=book.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title" value="{{ book.title }}" required>
+
+    <label for="author">Author</label>
+    <input type="text" name="author" id="author" value="{{ book.author }}" required>
+
+    <label for="genre">Genre(s) | (Please Put Spaces Between Genres)</label>
+    <input type="text" name="genre" id="genre" value="{{ book.genre }}" required>
+
+    <label for="isbn">ISBN</label>
+    <input type="text" name="isbn" id="isbn" value="{{ book.isbn }}" required>
+
+    <label for="year">Year</label>
+    <input type="number" name="year" id="year" value="{{ book.year }}" required>
+
+    <label for="publisher">Publisher</label>
+    <input type="text" name="publisher" id="publisher" value="{{ book.publisher }}" required>
+
+    <label for="image">Cover Art</label>
+    <input type="file" name="image" id="image">
+    <br>
+
+    <label for="copies">Copies</label>
+    <input type="number" name="copies" id="copies" value="{{ book.copies }}" required>
+
+    <label for="available">Available</label>
+    <input type="number" name="available" id="available" value="{{ book.available }}" required>
+
+    <button type="submit">Submit</button>
+  </form>
+  {{ message }}
+{% endblock %}

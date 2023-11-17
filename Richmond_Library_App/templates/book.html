@@ -29,8 +29,7 @@
                 <div class="attribute-value">{{book.isbn}}</div>
             </div>
         </div>
-        {{message}}
-    
+
         <div class="reserveform">
             <form name='reserveform' action="{% url 'Book' bookname=book.title %}" method="POST">
                 {% csrf_token %}
@@ -38,7 +37,37 @@
             </form>
         </div>
 
+        {% if status == 'admin' %}
+        <button class="remove-book-button" data-book-id="{{ book.id }}">Remove Book</button>
+        {% endif %}
+        
+        {% if status == 'admin' %}
+        <div class="edit-book-button">
+            <form action="{% url 'editBook' book_id=book.id %}" method="GET">
+                {% csrf_token %}
+                <button type="submit">Edit Book</button>
+            </form>
+        </div>
+        {% endif %}
 
+        {{message}}
+
+        <script>
+            // JavaScript function to display the confirmation pop-up
+            document.addEventListener("DOMContentLoaded", function () {
+                const removeButtons = document.querySelectorAll(".remove-book-button");
+                removeButtons.forEach(function (button) {
+                    button.addEventListener("click", function () {
+                        const bookId = this.getAttribute("data-book-id");
+                        const confirmed = confirm("Are you sure you'd like to remove this book?");
+                        if (confirmed) {
+                            // Redirect to the Django view for book removal with the bookId parameter
+                            window.location.href = "{% url 'remove_book' %}?book_id=" + bookId;
+                        }
+                    });
+                });
+            });
+        </script>
     
         
     </div>

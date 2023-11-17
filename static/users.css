@@ -30,6 +30,18 @@ body {
     border-bottom: 1px solid #D9D9D9;
 }
 
+.edit-button {
+    padding: 2px 16px;
+    border: none;
+    /* background-color: #215FAC; */
+    background-color: #9e9d9d;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.edit-button:hover {
+    background-color: #F3CD3B;
+}
 
 /* 215FAC, blue*/
 /* F3CD3B, yellow */

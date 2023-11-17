@@ -7,7 +7,7 @@ body {
 .add-book-form {
     width: 50%;
     margin: 0 auto;
-    background-color: #f3cd3b; /* Yellow */
+    background-color: white; /* Yellow */
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -44,3 +44,42 @@ body {
     }
 
 /* Optional: Add more styling as needed */
+
+.edit-book-form {
+    width: 50%;
+    margin: 0 auto;
+    background-color: white; /* Yellow */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+    /* Input fields */
+    .edit-book-form input[type="text"],
+    .edit-book-form input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    /* Submit button */
+    .edit-book-form button[type="submit"] {
+        background-color: #215fac; /* Blue */
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+
+        /* Hover effect for submit button */
+        .edit-book-form button[type="submit"]:hover {
+            background-color: #1b4e8a; /* Darker blue */
+        }
+
+    /* Optional: Style labels, etc. */
+    .edit-book-form label {
+        font-weight: bold;
+    }
