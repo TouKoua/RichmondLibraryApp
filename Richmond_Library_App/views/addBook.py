@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from Richmond_Library_App.models import Genre, Book
+from Richmond_Library_App.models import Genre, Book, User
 from django.shortcuts import redirect
 from Richmond_Library_App import settings
 from django.core.exceptions import ObjectDoesNotExist
@@ -9,9 +9,12 @@ from urllib.parse import quote
 
 
 class BookCreateView(View):
-    def get(self, request):
-        return render(request, 'addBook.html', {})
-
+    def get(self,request):
+        if get_user_status(request) != 'admin':
+            return redirect('/home/')
+        
+        return render(request, 'addBook.html', {'status': get_user_status(request)})
+    
     def post(self, request):
         isbn = request.POST.get("isbn")
         copies = request.POST.get("copies")
@@ -31,10 +34,9 @@ class BookCreateView(View):
             message = "Successfully added Book!"
         else:
             message = "Book not found."
-
-        print(genre_list)
+        
         parse_genre(genre_list, book)
-        return render(request, 'addBook.html', {'message': message})
+        return render(request, 'addBook.html', {'message': message, 'status': get_user_status(request)})
 
 
 def uppercase_genre(list):
@@ -44,6 +46,7 @@ def uppercase_genre(list):
 
 
 def parse_genre(list, book):
+
     for i in list:
         try:
             genre_object = Genre.objects.get(genre_name=i)
@@ -83,3 +86,8 @@ def fetch_book_from_api(isbn, cover_art, copies_num, available_num):
     except requests.RequestException as e:
         print(f"Requests error when fetching from Google Books API: {e}")
     return None
+
+
+def get_user_status(request):
+    user = User.objects.get(username=request.user.username)
+    return user.user_type

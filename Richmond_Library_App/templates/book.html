@@ -30,8 +30,6 @@
             </div>
         </div>
 
-        <button class="remove-book-button" data-book-id="{{ book.id }}">Remove Book</button>
-    
         <div class="reserveform">
             <form name='reserveform' action="{% url 'Book' bookname=book.title %}" method="POST">
                 {% csrf_token %}
@@ -39,12 +37,18 @@
             </form>
         </div>
 
+        {% if status == 'admin' %}
+        <button class="remove-book-button" data-book-id="{{ book.id }}">Remove Book</button>
+        {% endif %}
+        
+        {% if status == 'admin' %}
         <div class="edit-book-button">
             <form action="{% url 'editBook' book_id=book.id %}" method="GET">
                 {% csrf_token %}
                 <button type="submit">Edit Book</button>
             </form>
         </div>
+        {% endif %}
 
         {{message}}
 

@@ -11,7 +11,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{% url 'Home' %}">
           <img src="{% static 'images/mps_logo1.png' %}" alt=" Logo">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -24,15 +24,22 @@
             <li class="nav-item">
               <a class="nav-link link-light" href="{% url 'Profile' %}">PROFILE</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link link-light" href="{% url 'Users' %}">USERS</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link link-light" href="{% url 'AddBook' %}">ADD BOOK</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link link-light" href="{% url 'Checkout' %}">CHECKOUT</a>
-            </li>
+            {% if status == 'teacher' %}
+              <li class="nav-item">
+                <a class="nav-link link-light" href="{% url 'Checkout' %}">CHECKOUT</a>
+              </li>
+            {% endif %}
+            {% if status == 'admin' %}
+              <li class="nav-item">
+                <a class="nav-link link-light" href="{% url 'Users' %}">USERS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link-light" href="{% url 'AddBook' %}">ADD BOOK</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link-light" href="{% url 'Checkout' %}">CHECKOUT</a>
+              </li>
+            {% endif %}
             <li class="nav-item">
               <a class="nav-link link-light" href="{% url 'Logout' %}">LOGOUT</a>
             </li>

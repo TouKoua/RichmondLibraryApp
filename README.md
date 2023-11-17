@@ -76,16 +76,16 @@ pip install django-allauth
 Everything should be setup correctly, so you just need to run the project.
 
 # All Commands/Installs Shortcuts
-Install:
-pip install Django==4.2.5
-pip install django-bootstrap-v5
-pip install Pillow
-pip install django-elasticsearch-dsl
-pip install django-allauth
+Install:  
+pip install Django==4.2.5  
+pip install django-bootstrap-v5  
+pip install Pillow  
+pip install django-elasticsearch-dsl  
+pip install django-allauth  
 
-Commands:
-python manage.py runserver (runs the server locally)
-python manage.py makemigrations (makes changes to existing databases)
-python manage.py migrate ('migrates' or adds those changes to the admin page)
-python manage.py createsuperuser (makes a superuser that is able to access the admin page and all permissions)
-python manage.py search_index --rebuild (used to create our search_index for querys run by ElasticSearch)
+Commands:  
+python manage.py runserver (runs the server locally)  
+python manage.py makemigrations (makes changes to existing databases)  
+python manage.py migrate ('migrates' or adds those changes to the admin page)  
+python manage.py createsuperuser (makes a superuser that is able to access the admin page and all permissions)  
+python manage.py search_index --rebuild (used to create our search_index for querys run by ElasticSearch)  

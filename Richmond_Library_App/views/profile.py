@@ -43,6 +43,7 @@ class Profile(View):
             "add_book_form": add_book_form,
             "user_collection": collections_page,
             "books": books_page,
+            'status': get_user_status(request),
         })
 
     def post(self, request):
@@ -61,9 +62,17 @@ class Profile(View):
                 collection_entry.user = request.user
                 collection_entry.save()
                 add_book_form.save_m2m()
-                return render(request, "profile.html", {"user": user, "add_book_form": add_book_form, "user_collection": user_collection, "message": "Created new collection!"})
+                return render(request, "profile.html", {"user": user, 
+                "add_book_form": add_book_form, 
+                "user_collection": user_collection, 
+                "message": "Created new collection!",
+                'status': get_user_status(request)})
             else:
-                return render(request, "profile.html", {"user": user, "add_book_form": add_book_form, "user_collection": user_collection, "message": "Unable to create collection"})
+                return render(request, "profile.html", {"user": user, 
+                "add_book_form": add_book_form, 
+                "user_collection": user_collection, 
+                "message": "Unable to create collection",
+                'status': get_user_status(request)})
 
         elif 'view_collections' in request.POST:
             # Handle the View Collections action
@@ -72,4 +81,11 @@ class Profile(View):
             # Fetch the user's book collection
             user_collection = Collection.objects.filter(user=user)
 
-        return render(request, "profile.html", {"user": user, "add_book_form": add_book_form, "user_collection": user_collection})
+        return render(request, "profile.html", {"user": user, 
+        "add_book_form": add_book_form, 
+        "user_collection": user_collection,
+        'status': get_user_status(request),})
+
+def get_user_status(request):
+    user = User.objects.get(username=request.user.username)
+    return user.user_type
