@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,7 +31,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-SITE_ID=4
+SITE_ID = 4
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -105,11 +106,10 @@ DATABASES = {
 ELASTICSEARCH_DSL = {
     'default': {
         'hosts': 'https://localhost:9200',
-        'http_auth': ('elastic', 'WKIv5PveQdVU1U3By8Yd'),
-        'ca_certs': 'C:/Users/Proje/Desktop/Projects/elasticsearch-8.10.4-windows-x86_64/elasticsearch-8.10.4/config/certs/http_ca.crt',
+        'http_auth': ('elastic', '6WVtPwap5f=u2K91H5b_'),
+        'ca_certs': '/Users/lucaspatron/Desktop/2023 Fall Semester/595/elasticsearch-8.10.4/config/certs/http_ca.crt',
     }
 }
-
 
 
 # Password validation
@@ -149,19 +149,22 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
+# Add your Google Books API key here
+GOOGLE_BOOKS_API_KEY = 'AIzaSyCL1t6vOT0a3kHjXUiTn_kXe23rOa3ODt8'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Authentication backends that allow us to use APIs for login.
-AUTHENTICATION_BACKENDS =(
+AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend"
 )
 
 # Skips the white confirmation page and goes right to selecting google account to login with
-SOCIALACCOUNT_LOGIN_ON_GET=True
+SOCIALACCOUNT_LOGIN_ON_GET = True
 
 AUTH_USER_MODEL = "Richmond_Library_App.User"
 
