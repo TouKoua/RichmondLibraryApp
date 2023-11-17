@@ -79,8 +79,5 @@ def filterbooks(searchquery, filter):
 
     except Exception as error:
         return booklist
-    return booklist
 
-def get_user_status(request):
-    user = User.objects.get(username=request.user.username)
-    return user.user_type
+    return booklist

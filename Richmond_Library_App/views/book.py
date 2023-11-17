@@ -2,6 +2,7 @@ from django.views import View
 from django.shortcuts import render, get_object_or_404, redirect
 from Richmond_Library_App.models import User, Book
 
+
 class BookPage(View):
   def get(self, request, bookname):
     # gets specific book information via bookname
@@ -81,3 +82,7 @@ class EditBook(View):
 
         # Redirect to the books page or any other page you prefer
         return redirect('Home')
+
+
+
+
