@@ -63,3 +63,16 @@ body {
     bottom: -155;
     right: -386;
 }
+
+.remove-book-button {
+    margin-top: 30px; /* Adjust the value as needed */
+}
+
+.reserveform {
+    position: relative;
+    top: -30px; /* Adjust the value as needed */
+}
+
+.edit-book-button {
+    margin-top: -20px; /* Adjust the value as needed */
+}
