@@ -1,13 +1,16 @@
 from django.shortcuts import render
 from django.views import View
-from Richmond_Library_App.models import Genre, Book
-from django.shortcuts import redirect
+from Richmond_Library_App.models import Genre, Book, User
+from django.shortcuts import redirect, redirect
 
 
 
 class BookCreateView(View):
     def get(self,request):
-        return render(request, 'addBook.html', {})
+        if get_user_status(request) != 'admin':
+            return redirect('/home/')
+        
+        return render(request, 'addBook.html', {'status': get_user_status(request)})
     
     def post(self, request):
         title = request.POST.get("title")
@@ -28,7 +31,7 @@ class BookCreateView(View):
            (not copies.isdigit()) or
            (not available.isdigit()) ):
             message = "Invalid input"
-            return render(request, "addBook.html", {"message": message}) # Replace 'name_of_books_list_view' with the actual view name.
+            return render(request, "addBook.html", {"message": message, 'status': get_user_status(request)}) # Replace 'name_of_books_list_view' with the actual view name.
         else:
             book = Book.objects.create(title=title,
                                        author=author,
@@ -45,7 +48,7 @@ class BookCreateView(View):
             
             
             message = "Successfully added Book!"
-            return render(request, 'addBook.html', {'message': message})
+            return render(request, 'addBook.html', {'message': message, 'status': get_user_status(request)})
 
 def uppercase_genre(list):
     for i in range(len(list)):
@@ -53,6 +56,7 @@ def uppercase_genre(list):
     return list
 
 def parse_genre(list, book):
+
     for i in list:
         try:
             genre_object = Genre.objects.get(genre_name=i)
@@ -62,3 +66,8 @@ def parse_genre(list, book):
             genre_object = Genre.objects.create(genre_name=i)
             genre_object.book.add(book)
             genre_object.save()
+
+
+def get_user_status(request):
+    user = User.objects.get(username=request.user.username)
+    return user.user_type

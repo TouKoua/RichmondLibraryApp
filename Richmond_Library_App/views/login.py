@@ -14,7 +14,10 @@ class Login(View):
         # This is now using Django's Authentification system.
         request.session['name'] = name
         request.session['password'] = password
+        print("HERE: ", name, password)
+
         user = authenticate(request, username=name, password=password)
+        print("User: ", user)
         if user is not None:
             login(request, user)
             return redirect('/home/')
@@ -35,7 +38,10 @@ class Logout(View):
         # This is now using Django's Authentification system.
         request.session['name'] = name
         request.session['password'] = password
+        print("HERE: ", name, password)
+
         user = authenticate(request, username=name, password=password)
+        print("User: ", user)
         if user is not None:
             login(request, user)
             return redirect('/home/')

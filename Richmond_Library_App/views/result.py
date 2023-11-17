@@ -16,8 +16,12 @@ class Result(View):
         result = filterbooks(searchquery, filter)
         filterForm = FilterForm(use_required_attribute=False)
         if not result:
-            return render(request, 'result.html', {'message': 'No books exist given the prompt.', "filterForm": filterForm})
-        return render(request, "result.html", {"result": result, "filterForm": filterForm})
+            return render(request, 'result.html', {'message': 'No books exist given the prompt.', 
+            "filterForm": filterForm,
+            'status': get_user_status(request)})
+        return render(request, "result.html", {"result": result, 
+        "filterForm": filterForm,
+        'status': get_user_status(request)})
     
     def post(self, request):
         filterForm = FilterForm(use_required_attribute=False, data=request.POST)
@@ -44,8 +48,12 @@ class Result(View):
                         result.remove(book)
                         removed = True
         if not result:
-            return render(request, 'result.html', {'message': 'No books exist given the prompt.', "filterForm": filterForm})
-        return render(request, "result.html", {"result": result, "filterForm": filterForm})
+            return render(request, 'result.html', {'message': 'No books exist given the prompt.',
+             "filterForm": filterForm,
+             'status': get_user_status(request),})
+        return render(request, "result.html", {"result": result, 
+        "filterForm": filterForm,
+        'status': get_user_status(request)})
     
 def filterbooks(searchquery, filter):
     try:
@@ -72,3 +80,7 @@ def filterbooks(searchquery, filter):
     except Exception as error:
         return booklist
     return booklist
+
+def get_user_status(request):
+    user = User.objects.get(username=request.user.username)
+    return user.user_type

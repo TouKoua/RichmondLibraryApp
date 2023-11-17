@@ -7,7 +7,7 @@ body {
 .add-book-form {
     width: 50%;
     margin: 0 auto;
-    background-color: #f3cd3b; /* Yellow */
+    background-color: white; /* Yellow */
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
