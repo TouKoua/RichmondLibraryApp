@@ -83,10 +83,10 @@
                     </ul>
                 </td>
                 <td class="collection-table-button-col">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#collectionModal">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editCollectionModal">
                         Edit
                     </button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#collectionModal">
+                    <button type="button" class="btn btn-primary">
                         Remove
                     </button>
                 </td>
@@ -94,6 +94,29 @@
         {% endfor %}
     </tbody>
 </table>
+
+<!-- Edit Collection Modal -->
+<div class="modal fade" id="editCollectionModal" tabindex="-1" aria-labelledby="collectionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="collectionModalLabel">Edit Collection</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="">
+                    {% csrf_token %}
+                    {{ add_book_form.as_p }}
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" name="save_collection">Save</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
 
 <!-- Engaging Pagination for collections -->
 <div class="pagination">
