@@ -15,6 +15,10 @@ class Checkout(View):
         
         if 'select_user' in request.POST:
             user_request = request.POST.get('userselect')
+            
+            if user_request == '':
+                return redirect('/checkout/')
+            
             user_request = User.objects.get(email=user_request)
             reserved_books = user_request.reserved_books.all()
             context = {'users': get_users(), 'user_books': reserved_books, 'user_email': user_request.email, 'status': get_user_status(request)}
@@ -22,7 +26,8 @@ class Checkout(View):
         elif 'save' in request.POST:
             book_request = request.POST.get('book-status')
             user_request = request.POST.get('save')
-            reserved_books = User.objects.get(email=user_request).reserved_books.all()
+            user_request = User.objects.get(email=user_request)
+            reserved_books = user_request.reserved_books.all()
             
             book_option = book_request[len(book_request)-1: len(book_request)]
             book_request = Book.objects.get(title=book_request[0: len(book_request)-1])
@@ -33,7 +38,13 @@ class Checkout(View):
             elif book_option == '2':
                 book_request.status = 'checked out'
                 book_request.save()
-            context = {'users': get_users(), 'user_books': reserved_books, 'user_email': user_request, 'status': get_user_status(request)}
+            elif book_option == '3':
+                book_request.status = ''
+                user_request.reserved_books.remove(book_request)
+                book_request.available = book_request.available + 1
+                book_request.save()
+                
+            context = {'users': get_users(), 'user_books': reserved_books, 'user_email': user_request.email, 'status': get_user_status(request)}
             
         
         return render(request, 'checkout.html', context)
