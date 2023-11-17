@@ -1,5 +1,5 @@
 from django.views import View
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from Richmond_Library_App.models import User, Book
 
 class BookPage(View):
@@ -46,3 +46,30 @@ def reserve_check(book, userbooks):
     if book in userbooks:
       return True
     return False
+
+class EditBook(View):
+    def get(self, request, book_id):
+        book = get_object_or_404(Book, id=book_id)
+        return render(request, "editBook.html", {'book': book})
+
+    def post(self, request, book_id):
+        book = get_object_or_404(Book, id=book_id)
+
+        # Update book attributes based on the POST data
+        book.title = request.POST.get('title')
+        book.author = request.POST.get('author')
+        book.genre = request.POST.get('genre')
+        book.isbn = request.POST.get('isbn')
+        book.year = request.POST.get('year')
+        book.publisher = request.POST.get('publisher')
+        book.copies = request.POST.get('copies')
+        book.available = request.POST.get('available')
+
+        # Handle image upload separately if needed
+        if 'image' in request.FILES:
+            book.image = request.FILES['image']
+
+        book.save()
+
+        # Redirect to the books page or any other page you prefer
+        return redirect('Home')

@@ -38,6 +38,14 @@
                 <button name="reserve" value="{{book.title}}">Reserve</button>
             </form>
         </div>
+
+        <div class="edit-book-button">
+            <form action="{% url 'editBook' book_id=book.id %}" method="GET">
+                {% csrf_token %}
+                <button type="submit">Edit Book</button>
+            </form>
+        </div>
+
         {{message}}
 
         <script>
