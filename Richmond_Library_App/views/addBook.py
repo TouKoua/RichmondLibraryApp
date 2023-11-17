@@ -37,7 +37,6 @@ class BookCreateView(View):
         return render(request, 'addBook.html', {'message': message})
 
 
-
 def uppercase_genre(list):
     for i in range(len(list)):
         list[i] = list[i][0].upper() + list[i][1:]
@@ -55,14 +54,6 @@ def parse_genre(list, book):
             genre_object.book.add(book)
             genre_object.save()
 
-
-# def check_book(book):
-#     try:
-#         Book.objects.get(title=book.title)
-#         return True
-#     except:
-#         return False
-    
 
 def fetch_book_from_api(isbn, cover_art, copies_num, available_num):
     encoded_isbn = quote(isbn)  # URL encode the title
