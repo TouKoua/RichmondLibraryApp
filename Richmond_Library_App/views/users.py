@@ -9,7 +9,7 @@ class UsersPage(View):
         
         # Gets list of all users and passes it to the user page
         users = User.objects.all()
-        return render(request, "users.html", {'users': users})
+        return render(request, "users.html", {'users': users, 'status': get_user_status(request)})
     
 class EditUser(View):
     # def get(self, request, user):
