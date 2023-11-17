@@ -1,6 +1,7 @@
 from django.test import TestCase, Client
-from Richmond_Library_App.models import Book
+from Richmond_Library_App.models import Book, Genre
 from Richmond_Library_App.views.result import filterbooks
+from collections import Counter
 
 class ElasticSearchTests(TestCase):
     def setUp(self):
@@ -15,4 +16,32 @@ class ElasticSearchTests(TestCase):
     def test_TitleSearch(self):
         expected = list(Book.objects.filter(title__contains = "harry"))
         actual = filterbooks("harry", "Title")
-        self.assertEquals(expected,actual,"Not matching")
+        self.assertTrue(Counter(expected) == Counter(actual))
+    
+    def test_TitleSearchNoMatch(self):
+        expected = []
+        actual = filterbooks("book1", "Title")
+        self.assertListEqual(expected, actual, "Not Matching")
+    
+    def test_AuthorSearch(self):
+        expected = list(Book.objects.filter(author__contains = "brandon"))
+        actual = filterbooks("brandon", "Author")
+        self.assertTrue(Counter(expected) == Counter(actual))
+    
+    def test_AuthorSearchNoMatch(self):
+        expected = []
+        actual = filterbooks("author1", "Author")
+        self.assertListEqual(expected, actual, "Not Matching")
+    
+    def test_PublisherSearch(self):
+        expected = list(Book.objects.filter(publisher__contains = "tor"))
+        actual = filterbooks("tor", "Publisher")
+        self.assertTrue(Counter(expected) == Counter(actual))
+    
+    def test_PublisherSearchNoMatch(self):
+        expected = []
+        actual = filterbooks("somepublisher", "Publisher")
+        self.assertListEqual(expected, actual, "Not Matching")
+    
+    
+    
