@@ -2,7 +2,7 @@ from django.views import View
 from django import forms
 from django.shortcuts import render
 from Richmond_Library_App.document import BookDocument, GenreDocument
-from Richmond_Library_App.models import Genre, Book
+from Richmond_Library_App.models import Genre, Book, User
 
 class FilterForm(forms.Form):
     author = forms.CharField(initial="", widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
@@ -81,3 +81,7 @@ def filterbooks(searchquery, filter):
         return booklist
 
     return booklist
+
+def get_user_status(request):
+    user = User.objects.get(username=request.user.username)
+    return user.user_type
