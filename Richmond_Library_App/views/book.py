@@ -53,6 +53,10 @@ def get_user_status(request):
 
 class EditBook(View):
     def get(self, request, book_id):
+        if get_user_status(request) != 'admin':
+          return redirect('/home/')
+      
+      
         book = get_object_or_404(Book, id=book_id)
         return render(request, "editBook.html", {'book': book})
 
