@@ -11,6 +11,7 @@
                 <tr class="user-table-head">
                     <td>Username</td>
                     <td>First Name</td>
+                    <td>Last Name</td>
                     <td>Email</td>
                     <td>Account Type</td>
                 </tr>
@@ -19,16 +20,18 @@
                     <tr class="user-table-row">
                         <td>{{user.username}}</td>
                         <td>{{user.first_name}}</td>
+                        <td>{{user.last_name}}</td>
                         <td>{{user.email}}</td>
                         <td>{{user.user_type}}</td>
+                        <td>
+                            <a href="{% url 'EditUser' _username=user.username %}">
+                                <button class="edit-button">Edit</button>
+                            </a>
+                        </td>
                     </tr>
                 {% endfor %}
             </table>
         </div>
-        <!-- <br>
-        <a href="{% url 'CreateUser' %}">
-            <button>Create User</button>
-        </a> -->
     </div>
     
 {% endblock %}

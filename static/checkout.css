@@ -1,0 +1,42 @@
+/* Styling for the background color */
+body {
+    background-color: #215fac; /* Blue */
+}
+
+/* Container for the "add book" form */
+
+.main-container {
+    background-color: white;
+    width: 90%;
+    margin: auto;
+    margin-top: 40px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.book-container {
+    width: 80%;
+    margin: auto;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.book-card {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    border: 1px solid black;
+    text-align: center;
+  }
+
+  .book-image {
+    background-image: url('static\images\harrypotterandthesorcererstonecoverart.jpg');
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+
+/* Optional: Add more styling as needed */

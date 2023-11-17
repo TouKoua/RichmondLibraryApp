@@ -9,23 +9,12 @@
   <h1>Add a New Book</h1>
   <form class="add-book-form" action='{% url 'AddBook' %}' method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <label for="title">Title</label>
-    <input type="text" name="title" id="title" required>
-
-    <label for="author">Author</label>
-    <input type="text" name="author" id="author" required>
-
-    <lable for="genre">Genre(s) | (Please Put Spaces Between Genres)</label>
-    <input type="text" name="genre" id="genre" required>
 
     <label for="isbn">ISBN</label>
     <input type="text" name="isbn" id="isbn" required>
 
-    <lable for="year">Year</label>
-    <input type="number" name="year" id="year" required>
-
-    <lable for="publisher">Publisher</label>
-    <input type="text" name="publisher" id="publisher" required>
+    <lable for="genre">Genre(s) | (Please Put Spaces Between Genres)</label>
+    <input type="text" name="genre" id="genre" required>
 
     <lable for="coverart">Cover Art</label>
     <input type="file" name="image" id="image" required>

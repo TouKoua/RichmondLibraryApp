@@ -1,0 +1,41 @@
+body {
+    /* background-color: #D9D9D9; */
+    background-color: #215FAC;
+}
+
+.main-container {
+    padding: 60px 100px;
+    /* Centers the "Create User" button on the page */
+    /* text-align: center; */
+}
+
+.user-info-container {
+    /* padding: 0 200px; */
+    text-align: center;
+}
+
+.cancel-button {
+    padding: 10px;
+    border: none;
+    /* background-color: #215FAC; */
+    background-color: #9e9d9d;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.cancel-button:hover {
+    background-color: #F3CD3B;
+}
+
+.save-button {
+    padding: 10px 25px;
+    border: none;
+    /* background-color: #215FAC; */
+    background-color: #9e9d9d;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.save-button:hover {
+    background-color: #F3CD3B;
+}

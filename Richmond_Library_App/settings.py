@@ -106,8 +106,8 @@ DATABASES = {
 ELASTICSEARCH_DSL = {
     'default': {
         'hosts': 'https://localhost:9200',
-        'http_auth': ('elastic', '6WVtPwap5f=u2K91H5b_'),
-        'ca_certs': '/Users/lucaspatron/Desktop/2023 Fall Semester/595/elasticsearch-8.10.4/config/certs/http_ca.crt',
+        'http_auth': ('elastic', 'Qo*cisAZQzQNkc*40zVl'),
+        'ca_certs': 'D:\ElasticSearch\elasticsearch-8.10.4\config\certs\http_ca.crt',
     }
 }
 

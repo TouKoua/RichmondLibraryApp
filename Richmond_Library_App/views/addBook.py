@@ -13,8 +13,16 @@ class BookCreateView(View):
         return render(request, 'addBook.html', {})
 
     def post(self, request):
-        title = request.POST.get("title")
-        book = get_book(title)
+        isbn = request.POST.get("isbn")
+        copies = request.POST.get("copies")
+        available = request.POST.get("available")
+        genre = request.POST.get("genre")
+        cover_art = request.FILES['image']
+        
+        genre_list = uppercase_genre(genre.split(" "))
+        
+        book = fetch_book_from_api(isbn, cover_art, copies, available)
+    
         if book:
             # Save the book if it's new (fetched from API)
             if not book.pk:
@@ -23,6 +31,9 @@ class BookCreateView(View):
             message = "Successfully added Book!"
         else:
             message = "Book not found."
+
+        print(genre_list)
+        parse_genre(genre_list, book)
         return render(request, 'addBook.html', {'message': message})
 
 
@@ -45,18 +56,17 @@ def parse_genre(list, book):
             genre_object.save()
 
 
-def get_book(title):
-    try:
-        # Try to get the book from the local database.
-        return Book.objects.get(title=title)
-    except ObjectDoesNotExist:
-        # If the book is not found, fetch from Google Books API.
-        return fetch_book_from_api(title)
+# def check_book(book):
+#     try:
+#         Book.objects.get(title=book.title)
+#         return True
+#     except:
+#         return False
     
 
-def fetch_book_from_api(title):
-    encoded_title = quote(title)  # URL encode the title
-    api_url = f'https://www.googleapis.com/books/v1/volumes?q=intitle:{encoded_title}&key={settings.GOOGLE_BOOKS_API_KEY}'
+def fetch_book_from_api(isbn, cover_art, copies_num, available_num):
+    encoded_isbn = quote(isbn)  # URL encode the title
+    api_url = f'https://www.googleapis.com/books/v1/volumes?q=isbn:{encoded_isbn}&key={settings.GOOGLE_BOOKS_API_KEY}'
     try:
         response = requests.get(api_url)
         if response.status_code == 200:
@@ -70,9 +80,10 @@ def fetch_book_from_api(title):
                         0]['identifier'],
                     year=book_info.get('publishedDate', '').split('-')[0],
                     publisher=book_info.get('publisher', ''),
-                    copies=1,
-                    available=1,
-                    image=book_info.get('imageLinks', {}).get('thumbnail', '')
+                    copies=copies_num,
+                    available=available_num,
+                    # image=book_info.get('imageLinks', {}).get('thumbnail', '')
+                    image=cover_art
                 )
             else:
                 print("No books found in the Google Books API.")

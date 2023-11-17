@@ -1,0 +1,93 @@
+{% extends "pageBase.html" %}
+{% load static %}
+{% block stylesheet %}
+    <link href="{% static 'edituser.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block app_block %}
+    <div class="main-container">
+        <a href="{% url 'Users' %}"><button class="cancel-button">Cancel</button></a>
+
+        <div class="user-info-container">
+            <h1>Edit User</h1>
+            <br>
+            <form method="post">{% csrf_token%}
+                <h3>{{ user.username }}</h1>
+                <br><br>
+                <!-- <h3 style="font-size: 18;">Email:</h3>
+                <input
+                    type="text"
+                    name="_email"
+                    value="{{ user.email }}"
+                >
+                <br>
+                <input
+                    type="text"
+                    name="_password"
+                    value="{{ user.password }}"
+                >
+                <br>
+                <input
+                    type="text"
+                    name="_user_type"
+                    value="{{ user.user_type }}"
+                > -->
+                <table style="width: 100%;">
+                    <tr>
+                        <td style="text-align: right;"><h3 style="font-size: 18;">Email:</h3></td>
+                        <td>
+                            <input
+                                type="text"
+                                name="_email"
+                                value="{{ user.email }}"
+                            >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;"><h3 style="font-size: 18;">Password:</h3></td>
+                        <td>
+                            <input
+                                type="text"
+                                name="_password"
+                                value="{{ user.password }}"
+                            >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;"><h3 style="font-size: 18;">User Type:</h3></td>
+                        <td>
+                            <input
+                                type="text"
+                                name="_user_type"
+                                value="{{ user.user_type }}"
+                            >
+                        </td>
+                    </tr>
+                    <!-- <tr>
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Name"
+                        >
+                    </tr> -->
+                    <!-- <tr>
+                        <input
+                            type="text"
+                            name="_password"
+                            value="{{ user.password }}"
+                        >
+                    </tr> -->
+                    <!-- <tr>
+                        <input
+                            type="text"
+                            name="_user_type"
+                            value="{{ user.user_type }}"
+                        >
+                    </tr> -->
+                </table>
+                <br>
+                <input class="save-button" type="submit" value="Save"/>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.views import View
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from Richmond_Library_App.models import User, Book
 
 
@@ -10,12 +10,17 @@ class BookPage(View):
 
   def post(self, request, bookname):
     book = get_book(bookname)
+    current_user = request.user
+    user_books = current_user.reserved_books.all()
 
     if not check_availability(book):
       message = 'book is not available'
       return render(request, "book.html", {'book': book, 'message': message})
+    elif reserve_check(book, user_books):
+      message = 'book is already reserved'
+      return render(request, "book.html", {'book': book, 'message': message})
     
-    current_user = request.user
+    book.status = 'reserved'
     current_user.reserved_books.add(book)
     current_user.save()
     user_books = current_user.reserved_books.all()
@@ -39,9 +44,37 @@ def check_availability(book):
   return False
 
 def reserve_check(book, userbooks):
-    if not book in userbooks:
-      return False
-    return True
+    if book in userbooks:
+      return True
+    return False
+
+class EditBook(View):
+    def get(self, request, book_id):
+        book = get_object_or_404(Book, id=book_id)
+        return render(request, "editBook.html", {'book': book})
+
+    def post(self, request, book_id):
+        book = get_object_or_404(Book, id=book_id)
+
+        # Update book attributes based on the POST data
+        book.title = request.POST.get('title')
+        book.author = request.POST.get('author')
+        book.genre = request.POST.get('genre')
+        book.isbn = request.POST.get('isbn')
+        book.year = request.POST.get('year')
+        book.publisher = request.POST.get('publisher')
+        book.copies = request.POST.get('copies')
+        book.available = request.POST.get('available')
+
+        # Handle image upload separately if needed
+        if 'image' in request.FILES:
+            book.image = request.FILES['image']
+
+        book.save()
+
+        # Redirect to the books page or any other page you prefer
+        return redirect('Home')
+
 
 
 
