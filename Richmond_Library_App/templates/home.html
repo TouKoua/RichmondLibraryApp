@@ -99,12 +99,14 @@
     </a>
   </div>
 
-  <div style="margin-top: 100px;"></div> 
+  <div style="margin-top: 50px;"></div> 
 
   <!-- Link doesn't work because we don't have a books page, change this when page is made -->
   <div class="view-all-books-link">
-    <a href="/view-all-books">View All Books</a>
+    <a href="{% url 'AllBooks' %}">View All Books</a>
   </div>
+
+  <div style="margin-bottom: 50px;"></div> 
 
 </div>
 {% endblock %}
