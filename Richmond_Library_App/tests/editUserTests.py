@@ -1,12 +1,12 @@
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth.models import User, TestUser
+from django.contrib.auth.models import User
 from Richmond_Library_App.models import User 
 
 class EditUserTestCase(TestCase):
     def setUp(self):
         # Create a user for testing
-        self.test_user = TestUser.objects.create(
+        self.user = User.objects.create(
             username='testuser',
             email='test@example.com',
             password='testpassword',
@@ -15,7 +15,7 @@ class EditUserTestCase(TestCase):
 
     def test_edit_user(self):
         # Ensure the edit view is accessible
-        response = self.client.get(reverse('edit_user', args=[self.test_user.username]))
+        response = self.client.get(reverse('EditUser', args=[self.user.username]))
         self.assertEqual(response.status_code, 200)
 
         # Edit user data
@@ -24,7 +24,7 @@ class EditUserTestCase(TestCase):
         updated_user_type = 'admin'
 
         response = self.client.post(
-            reverse('edit_user', args=[self.test_user.username]),
+            reverse('EditUser', args=[self.user.username]),
             {
                 '_email': updated_email,
                 '_password': updated_password,
@@ -32,13 +32,13 @@ class EditUserTestCase(TestCase):
             }
         )
 
-        # Check if the user is redirected to the users view after editing
-        self.assertRedirects(response, reverse('users'))
+        # Check that the correct template is used
+        self.assertTemplateUsed(response, 'users.html')
 
         # Refresh the user from the database
-        self.test_user.refresh_from_db()
+        self.user.refresh_from_db()
 
         # Check if the user data is updated
-        self.assertEqual(self.test_user.email, updated_email)
-        self.assertEqual(self.test_user.password, updated_password)
-        self.assertEqual(self.test_user.user_type, updated_user_type)
+        self.assertEqual(self.user.email, updated_email)
+        self.assertEqual(self.user.password, updated_password)
+        self.assertEqual(self.user.user_type, updated_user_type)
