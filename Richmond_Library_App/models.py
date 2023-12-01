@@ -18,7 +18,7 @@ class Book(models.Model):
     publisher = models.CharField(max_length=100)
     copies = models.IntegerField()
     available = models.IntegerField()
-    image = models.ImageField(upload_to='static\images', null=True, blank=True)
+    image = models.ImageField(upload_to='static\images', null=True, blank=True, default='static\images\blank.png')
     status =  models.CharField(max_length=100, blank=True)
 
     # added available

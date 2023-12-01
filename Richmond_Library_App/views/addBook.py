@@ -20,7 +20,11 @@ class BookCreateView(View):
         copies = request.POST.get("copies")
         available = request.POST.get("available")
         genre = request.POST.get("genre")
-        cover_art = request.FILES['image']
+        
+        if not request.FILES['image']:
+            cover_art = 'static/images/blank.png'
+        else:
+            cover_art = request.FILES['image']
         
         genre_list = uppercase_genre(genre.split(" "))
         

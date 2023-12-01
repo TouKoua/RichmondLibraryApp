@@ -19,7 +19,7 @@ class EditUser(View):
     def get(self, request, _username):
         # Passes the user received from pressing edit button to the edit page
         user = User.objects.get(username=_username)
-        return render(request, "edituser.html", {'user': user})
+        return render(request, "edituser.html", {'user': user, 'status': get_user_status(request)})
     
     def post(self, request, **kwargs):
         user = User.objects.get(username=kwargs["_username"])
@@ -32,7 +32,7 @@ class EditUser(View):
 
         # Need to get all of the users after editing the user info
         users = User.objects.all()
-        return render(request, "users.html", {"users": users})
+        return render(request, "users.html", {"users": users, 'status': get_user_status(request)})
     
     # def post(self, request):
     #     User.objects.create(
