@@ -7,6 +7,12 @@ body {
     padding: 60px 100px;
     /* Centers the "Create User" button on the page */
     /* text-align: center; */
+    width: 50%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .user-info-container {
