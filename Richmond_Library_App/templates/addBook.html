@@ -6,8 +6,8 @@
 {% endblock %}
 
 {% block app_block %}
-  <h1>Add a New Book</h1>
   <form class="add-book-form" action='{% url 'AddBook' %}' method="post" enctype="multipart/form-data">
+    <h1 style='text-align: center'>Add a New Book</h1>
     {% csrf_token %}
 
     <label for="isbn">ISBN</label>

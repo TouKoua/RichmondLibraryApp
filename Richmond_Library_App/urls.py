@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from Richmond_Library_App.views.home import Home
+from Richmond_Library_App.views.allBooks import AllBooks
 from Richmond_Library_App.views.login import Login, Logout
 from Richmond_Library_App.views.result import Result
 from Richmond_Library_App.views.book import BookPage, EditBook
@@ -33,6 +34,7 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path('logout/', Logout.as_view(), name="Logout"),
     path('home/', Home.as_view(), name="Home"),
+    path('allBooks/', AllBooks.as_view(), name="AllBooks"),
     # <str:bookname> will set url to be modifiable depending on
     # the book name.
     path('book/<str:bookname>/', BookPage.as_view(), name="Book"),
