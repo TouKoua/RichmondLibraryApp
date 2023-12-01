@@ -26,7 +26,12 @@ class EditUser(View):
         user = User.objects.get(username=kwargs["_username"])
         # user.username = request.POST.get("_username")
         user.email = request.POST.get("_email")
-        user.password = make_password(request.POST.get("_password"))
+        
+        if not request.POST.get("_password"):
+            user.password = user.password
+        else:
+            user.password = make_password(request.POST.get("_password"))
+            
         user.user_type=request.POST.get("_user_type")
         user.save()
 
@@ -34,17 +39,6 @@ class EditUser(View):
         # Need to get all of the users after editing the user info
         users = User.objects.all()
         return render(request, "users.html", {"users": users, 'status': get_user_status(request)})
-    
-    # def post(self, request):
-    #     User.objects.create(
-    #         username=request.POST.get("username"),
-    #         password=request.POST.get("password"),
-    #         name=request.POST.get("name"),
-    #         email=request.POST.get("email"),
-    #         user_type=request.POST.get("user_type")
-    #     )
-    #     users = User.objects.all()
-    #     return render(request, "users.html", {'users': users})
 
 def get_user_status(request):
     user = User.objects.get(username=request.user.username)

@@ -98,16 +98,15 @@ WSGI_APPLICATION = 'Richmond_Library_App.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3', 
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
 ELASTICSEARCH_DSL = {
     'default': {
-        'hosts': 'https://localhost:9200',
-        'http_auth': ('elastic', 'Qo*cisAZQzQNkc*40zVl'),
-        'ca_certs': 'D:\ElasticSearch\elasticsearch-8.10.4\config\certs\http_ca.crt',
+        'hosts': 'https://651835aa76b74aa9b40245b228ebc63d.us-central1.gcp.cloud.es.io:9243',
+        'http_auth': ('elastic', 'WBqsgjKWuZari9ocPnjzrb8E')
     }
 }
 

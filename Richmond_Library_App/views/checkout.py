@@ -41,6 +41,7 @@ class Checkout(View):
             elif book_option == '3':
                 book_request.status = ''
                 user_request.reserved_books.remove(book_request)
+                print('WE GOT HERE')
                 book_request.available = book_request.available + 1
                 book_request.save()
                 
